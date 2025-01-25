@@ -8,6 +8,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
     <style>
+        @media screen and (max-width: 768px) {
+    .hero {
+        padding: 5rem 2rem; /* Reduce padding on small screens */
+    }
+
+    header .logo {
+        font-size: 2rem; /* Make logo smaller */
+    }
+
+    header nav a {
+        font-size: 1rem; /* Reduce font size */
+        margin-left: 1rem;
+    }
+
+    .services-cards {
+        grid-template-columns: 1fr; /* Stack service cards vertically */
+    }
+
+    .testimonial-slider {
+        width: 100%; /* Adjust width */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.5rem; /* Smaller font on mobile */
+    }
+
+    .hero p {
+        font-size: 1rem; /* Adjust text size */
+    }
+
+    .process-steps {
+        grid-template-columns: 1fr; /* Stack process steps */
+    }
+
+    .step img {
+        width: 40px; /* Adjust image size */
+    }
+}
+
+
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
