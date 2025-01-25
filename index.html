@@ -84,6 +84,60 @@
     justify-content: space-between;
 }
 
+
+/* General styling for both devices */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0f172a; /* Dark navy */
+    padding: 10px 20px;
+    color: #8ab47b; /* Green */
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px; /* Space between menu items */
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #8ab47b; /* Green */
+    font-weight: bold;
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Stack title and navigation */
+        align-items: center;
+    }
+
+    .title {
+        margin-bottom: 10px; /* Space between title and navigation */
+        text-align: center; /* Center-align the title */
+    }
+
+    .nav-menu {
+        flex-direction: column; /* Stack navigation links */
+        gap: 10px; /* Reduce gap between links */
+        text-align: center; /* Center-align links */
+        width: 100%; /* Full-width alignment */
+    }
+}
+
+
+
 header nav a {
     color: #fff;
     text-decoration: none;
@@ -658,7 +712,7 @@ header nav a {
     <header>
         <div class="logo"> <img src="pen-33981_1920.png" alt="" id="logoim"> &nbsp;Hand Writers Publication</div>
         
-        <nav>
+        <nav class="nav-menu">
             <a href="#about">About</a>
             <a href="#services">Services</a>
             <a href="#testimonials">Testimonials</a>
