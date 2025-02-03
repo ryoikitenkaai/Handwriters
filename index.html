@@ -7,7 +7,75 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
-    <style>
+    <!-- global font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+    
+
+    /* General styling for both devices */
+body {
+    margin: 0;
+    font-family: 'Roboto Slab', sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0f172a; /* Dark navy */
+    padding: 10px 20px;
+    color: #8ab47b; /* Green */
+}
+
+.title {
+    font-size: 1.5rem; /* Default font size for laptops */
+    font-weight: bold;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px; /* Space between menu items */
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #8ab47b; /* Green */
+    font-weight: bold;
+    font-size: 1rem; /* Default font size for laptops */
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Stack title and navigation */
+        align-items: center;
+    }
+
+    .title {
+        font-size: 1.2rem; /* Smaller font size for mobile */
+        margin-bottom: 10px; /* Space between title and navigation */
+        text-align: center; /* Center-align the title */
+    }
+
+    .nav-menu {
+        flex-direction: column; /* Stack navigation links */
+        gap: 10px; /* Reduce gap between links */
+        text-align: center; /* Center-align links */
+        width: 100%; /* Full-width alignment */
+    }
+
+    .nav-menu a {
+        font-size: 0.9rem; /* Smaller font size for mobile links */
+    }
+}
+
+
         @media screen and (max-width: 768px) {
     .hero {
         padding: 5rem 2rem; /* Reduce padding on small screens */
@@ -51,17 +119,19 @@
 
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(180deg, #1e293b, #0f172a);
+            background: linear-gradient(to bottom,#000000, #00ff6a);
             color: #e2e8f0;
             overflow-x: hidden;
+            
         }
 
         header {
-            background: #0f172a;
-            color: #e2e8f0;
+            font-family: 'Open Sans', sans-serif;
+            background: #000000;
+            color: #000000;
             padding: 1rem 3rem;
             display: flex;
             justify-content: space-between;
@@ -73,9 +143,10 @@
         }
 
         header .logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #8ab47b;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.3rem;
+            font-weight: 650;
+            color: #ffffff;
             width: 150%
         }
         header nav {
@@ -88,16 +159,16 @@
 /* General styling for both devices */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Playwrite India, sans-serif;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0f172a; /* Dark navy */
+    background-color: #9ca2b1; /* Dark navy */
     padding: 10px 20px;
-    color: #8ab47b; /* Green */
+    color: #E6E6FA; /* Green */
 }
 
 .title {
@@ -162,15 +233,24 @@ header nav a {
         .hero {
             text-align: center;
             padding: 8rem 2rem;
-            background: linear-gradient(to bottom,#8ab47b, #8ab47b);
-            color: #0f172a;
-            animation: fadeIn 2s ease-in-out;
+            background: linear-gradient(to bottom,#972727, #1a7255);
+            color: #ffffff;
+            background-image: url('pen-33981_1920.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 20%;
+            
+            background-attachment: fixed;
+            position: relative;
+            
+            /* animation: fadeIn 1s ease-in; */
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
+            font-size: 4.7rem;
+            margin-bottom: 1.3rem;
+            font-weight: 790;
+            transition: opacity 0.6s ease;
         }
 
         .hero p {
@@ -180,7 +260,8 @@ header nav a {
         }
 
         .about-section {
-        background: linear-gradient(180deg, #0f172a, #1e293b);
+        /* background: linear-gradient(180deg, #717888, #1e293b); */
+        background: linear-gradient(to bottom,#022711, #000000);
         color: #e2e8f0;
         padding: 5rem 2rem;
         text-align: center;
@@ -195,7 +276,7 @@ header nav a {
         left: -10%;
         width: 120%;
         height: 120%;
-        background: linear-gradient(145deg, rgba(138, 180, 123, 0.1), rgba(15, 23, 42, 0.5));
+        background: linear-gradient(145deg, rgba(138, 180, 123, 0.1), rgba(163, 169, 184, 0.5));
         filter: blur(120px);
         z-index: -1;
     }
@@ -333,7 +414,8 @@ header nav a {
 /* SERVICES SECTION */
 .services {
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, #8ab47b, #8ab47b); /* Blue gradient */
+    /* background: linear-gradient(135deg, #8ab47b, #8ab47b); Blue gradient */
+    background: linear-gradient(to bottom,#000000, #7c3b06);
     color: #fff;
     font-family: 'Arial', sans-serif;
     text-align: center;
@@ -384,7 +466,7 @@ header nav a {
 
 .service-card:hover {
     transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(71, 214, 58, 0.2);
 }
 
 .service-card:hover::after {
@@ -413,16 +495,18 @@ header nav a {
 
 .process-section {
     padding: 5rem 2rem;
-    background: #1e293b;
+    background: #6c81a3;
     text-align: center;
-    color: #0f172a;
+    color: #596480;
 }
 
 .process-section h2 {
     font-size: 3rem;
-    color: #8ab47b;
+    color: #38272783;
     margin-bottom: 2rem;
     text-transform: uppercase;
+    font-family: Open Sans , sans-serif;
+
 }
 
 .process-steps {
@@ -433,7 +517,7 @@ header nav a {
 }
 
 .step {
-    background: #0f172a;
+    background: #2d3852;
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
@@ -443,7 +527,7 @@ header nav a {
 
 .step:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 15px rgba(189, 56, 56, 0.4);
 }
 
 .step .icon img {
@@ -466,7 +550,7 @@ header nav a {
 
 
         .contact-section {
-            background: linear-gradient(to bottom, #0f172a, #1e293b);
+            background: linear-gradient(to bottom, #242121, #000000);
             color: #e2e8f0;
             padding: 5rem 2rem;
             text-align: center;
@@ -498,7 +582,7 @@ header nav a {
         footer {
             text-align: center;
             padding: 2rem;
-            background: #0f172a;
+            background: #000000;
             color: #e2e8f0;
             font-size: 1rem;
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
@@ -536,80 +620,26 @@ header nav a {
     width: 200px; /* Adjust the logo size */
     height: auto; /* Maintain aspect ratio */
 }
-.testimonial-slider {
-            display: flex;
-            overflow: hidden;
-            position: relative;
-            width: 20%;
-            margin: 0 auto;
-            gap: 2rem;
-        }
 
-        .slider-container {
-            display: flex;
-            transition: transform 1s ease;
-        }
-
-        .slide {
-            min-width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            background: #0f172a;
-            border-radius: 10px;
-        }
-
-        .slide img {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            font-size: 2rem;
-            border: none;
-            cursor: pointer;
-            z-index: 1;
-        }
-
-        .prev {
-            left: 10px;
-        }
-
-        .next {
-            right: 10px;
-        }
-        .testimonial-heading {
-    text-align: center;
-    font-size: 3rem;
-    color: #8ab47b;
-    font-weight: 800;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
 
 /* Prossess */
 .publication-process {
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, #8ab47b, #8ab47b);
+    /* background: linear-gradient(135deg, #8ab47b, #8ab47b); */
+    background: linear-gradient(to bottom,#7e3810, #252121);
     color: #0f172a;
     text-align: center;
     font-family: 'Arial', sans-serif;
 }
 
 .publication-process h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #0f172a;
-    font-weight: 800;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: #eadef0;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
     
+
 }
 
 .publication-process .section-intro {
@@ -631,15 +661,15 @@ header nav a {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
     padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 48px;
+    box-shadow: 0 80px 23px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .process-step:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(201, 151, 14, 0.2);
     transform: scale(1.02);
 }
 
@@ -669,45 +699,226 @@ header nav a {
     line-height: 1.5;
 }
 
+.testimonial-section {
+    background: linear-gradient(to top, #000000, #242020);
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.testimonial-container {
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    position: relative;
+}
 
+.testimonial-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: calc(6 * 32% + 60px); /* Adjust width for exact slides */
+}
 
-.faq {
-    margin: 1rem 0;
-    padding: 1rem;
-    border: 1px solid #8ab47b;
-    border-radius: 5px;
+.testimonial {
+    flex: 0 0 calc(100% / 2.5); /* Show 2.5 slides */
+    margin: 0 10px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.5s ease-in-out;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
     cursor: pointer;
 }
 
-.faq-toggle {
-    background: none;
-    color: #8ab47b;
-    font-size: 1.2rem;
-    text-align: left;
-    border: none;
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+.testimonial-text {
+    flex: 1;
+    color: #fff;
+    font: italic;
+    font-size: large;
+    font-family: Open-Sans, sans-serif;
+}
+.testimonial-img {
     width: 100%;
-    outline: none;
+    max-height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+.control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
 }
 
-.faq-content {
-    display: none;
-    color: #e2e8f0;
-    font-size: 1rem;
-    margin-top: 0.5rem;
+.fancy-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #aeb8aa, #5c5c72);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    animation: glow 1.5s infinite alternate;
 }
 
-.faq:hover .faq-content {
-    display: block;
+@keyframes glow {
+    0% {
+        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+        text-shadow: 4px 4px 20px rgba(189, 189, 189, 0.8);
+    }
 }
+
+
+
+
+/*FAQs*/
+
+#faqs{
+    background: linear-gradient(to bottom,#000000, #241f1f);
+    color: #fff; 
+    padding: 40px;
+}
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+
+.faq-item {
+  background-color: #111410;
+  padding: 20px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-5px);
+  background-color: #2d2f33;
+}
+
+.faq-question {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.faq-answer {
+  display: none;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #ccc;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+.faq-item.open .faq-question {
+  color: #ffffff;
+}
+
+.faq-item .faq-question:hover {
+  color: #abc0a3;
+}
+.fancy-heading2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(180deg, #b9c7b3, #09090a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    animation: glow 1.5s infinite alternate;
+}
+
+
+.contact-email {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.email-link {
+    display: inline;
+    background: transparent;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+.email-link:hover {
+    background: linear-gradient(45deg, #0f172a, #8ab47b);
+    transform: scale(1.1);
+}
+
 
     </style>
 </head>
 <body>
-    <body>
-        <div class="watermark">
-            <img src="pen-33981_1920.png" alt="Watermark Logo">
-        </div>
-    </body>
+    
     
     <header>
         <div class="logo"> <img src="pen-33981_1920.png" alt="" id="logoim"> &nbsp;Hand Writers Publication</div>
@@ -715,12 +926,16 @@ header nav a {
         <nav class="nav-menu">
             <a href="#about">About</a>
             <a href="#services">Services</a>
+            <a href="#process">Process</a>
             <a href="#testimonials">Testimonials</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
+
+    
     <section class="hero">
+        
         <h1>Publish Your Research with Confidence</h1>
         <p>We provide top-tier journal publication support, ensuring your research gets the attention it deserves.</p>
     </section>
@@ -884,89 +1099,255 @@ header nav a {
     
     
     
-    
-    
-    
-
-
-    <section class="testimonials" id="testimonials">
-        <h2 class="testimonial-heading">What Our Clients Say</h2>
-
-        <div class="testimonial-slider" id="slider">
-            <div class="slider-container">
-                <!-- Slide 1 -->
-                <div class="slide">
-                    <img src="t1.jpg" alt="Testimonial 1">
+    <section class="testimonial-section" id="testimonials">
+        
+        <div id="image-overlay" class="overlay">
+            <span class="close-btn" onclick="closeImage()">&times;</span>
+            <img id="overlay-img" src="" alt="Full View">
+        </div>
+        
+        <div class="testimonial-container">
+            <h2 class="fancy-heading" id="testh2">What our clients say!</h2><br>
+            <div class="testimonial-wrapper">
+                <!-- Testimonial 1 -->
+                <div class="testimonial">
+                    
+                    <div class="testimonial-text">
+                        <p>"Hand Writers made my publishing journey smooth and hassle-free. The team was incredibly supportive, and the payment after acceptance model is a game-changer. Highly recommended!"</p>
+                        <img src="t1.jpg" alt="Attached Image 1" class="testimonial-img">
+                    </div>
                 </div>
-                
-                <!-- Slide 3 -->
-                <div class="slide">
-                    <img src="t3.jpg" alt="Testimonial 3">
+                <!-- Repeat for Testimonial 2 to 6 -->
+                <div class="testimonial">
+                    
+                    <div class="testimonial-text">
+                        <p>"I was skeptical about online publishing services, but Hand Writers proved me wrong. Their end-to-end publication support and guidance were exactly what I needed. I couldn't be happier with the outcome!"</p>
+                        <img src="t2.jpg" alt="Attached Image 1" class="testimonial-img" onclick="openImage(this)">
+                    </div>
                 </div>
-                <!-- Slide 4 -->
-                <div class="slide">
-                    <img src="t4.jpg" alt="Testimonial 4">
+                <div class="testimonial">
+                   
+                    <div class="testimonial-text">
+                        <p>"Unlike other firms, Hand Writers focuses on genuine publication without hidden charges. The flexibility of payment after acceptance gave me the confidence to move forward with my research."</p>
+                        <img src="t3.jpg" alt="Attached Image 1" class="testimonial-img" onclick="openImage(this)">
+                    </div>
                 </div>
-                <!-- Slide 5 -->
-                <div class="slide">
-                    <img src="t5.jpg" alt="Testimonial 5">
+                <div class="testimonial">
+                   
+                    <div class="testimonial-text">
+                        <p>"From formatting to final publication, Hand Writers handled everything professionally. Their transparent process and quick response times made it a delightful experience."</p>
+                        <img src="t4.jpg" alt="Attached Image 1" class="testimonial-img" onclick="openImage(this)">
+                    </div>
                 </div>
-                <!-- Slide 6 -->
-                <div class="slide">
-                    <img src="t6.jpg" alt="Testimonial 6">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        <p>"The personalized support I received from Hand Writers was outstanding. Their expertise in research formatting and editing took my paper to the next level."</p>
+                        <img src="t5.jpg" alt="Attached Image 1" class="testimonial-img" onclick="openImage(this)">
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        <p>"Loved it! Highly professional and skilled team!"</p>
+                        <img src="t6.jpg" alt="Attached Image 1" class="testimonial-img" onclick="openImage(this)">
+                    </div>
                 </div>
             </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="controls">
+                <button class="control-btn prev">&#10094;</button>
+                <button class="control-btn next">&#10095;</button>
+            </div>
         </div>
-
-        <!-- Slider buttons -->
     </section>
     
-    <div class="faq">
-        <button class="faq-toggle">What are indexing requirements?</button>
-        <div class="faq-content">
-            <p>Indexing requirements refer to the specific databases where you want your paper to be listed, such as Scopus, Web of Science, or PubMed.</p>
-        </div>
-    </div>
     
+    
+
+
+    
+
+    
+    <section  id="faqs" >
+        <h2  class="fancy-heading2" style="text-align: center; color: #8ab47b;">Frequently Asked Questions</h2>
+        
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What is your publication guarantee?</span>
+            </div>
+            <div class="faq-answer">
+              <p>We guarantee 100% publication once your paper is accepted by the journal. With our expert services, we proudly maintain a 95% acceptance rate.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>When should I pay the APC (Article Processing Charge)?</span>
+            </div>
+            <div class="faq-answer">
+              <p>The APC is payable only after your paper gets published. We do not charge any submission fees.</p>
+            </div>
+          </div>
+      
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do you assist with the publication process?</span>
+            </div>
+            <div class="faq-answer">
+              <p>We are a third-party service provider that helps make your paper ready for publication. After you submit your paper, we ensure it meets all journal requirements and is refined for acceptance.</p>
+            </div>
+          </div>
+      
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Do you have any service charges?</span>
+            </div>
+            <div class="faq-answer">
+              <p>Yes, our service charges are variable and depend on the work required for your paper. The more detailed the work needed, the higher the charge.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    
+
     
     
     <section class="contact-section" id="contact">
         <h2>Contact Us</h2>
         <p>Connect with us on social media:</p>
         <p>
-            <a href="https://facebook.com" target="_blank">Facebook</a> |
-            <a href="https://instagram.com" target="_blank">Instagram</a> |
+            <a href="https://www.facebook.com/profile.php?id=61552444291691" target="_blank">Facebook</a> |
+            
             <a href="https://wa.me/+916205170397" target="_blank">WhatsApp</a>
         </p>
-        <p>Have questions? Explore our <a href="#">FAQs</a>.</p>
+        <div class="contact-email">
+            <p>📧 Reach us at:</p>
+            <a href="mailto:submissionwrittingservices@outlook.com" class="email-link">submissionwrittingservices@outlook.com</a>
+        </div>
+        
     </section>
 
     <footer>
         <p>&copy; 2024 Hand Writers Publication. All Rights Reserved.</p>
     </footer>
+
+
+
+
     <script>
-        let currentIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        const sliderContainer = document.querySelector('.slider-container');
 
-        function moveSlide(step) {
-            currentIndex += step;
-            if (currentIndex < 0) {
-                currentIndex = totalSlides - 1;
-            } else if (currentIndex >= totalSlides) {
-                currentIndex = 0;
-            }
-            updateSliderPosition();
-        }
+function openImage(img) {
+    // First, check if the image source is being passed correctly
+    if (img && img.src) {
+        const overlayImg = document.getElementById("overlay-img");
+        overlayImg.src = img.src;  // Set the src of overlay image
+        document.getElementById("image-overlay").style.display = "flex";  // Show the overlay
+    }
+}
 
-        function updateSliderPosition() {
-            const slideWidth = slides[0].offsetWidth;
-            sliderContainer.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-        }
+function closeImage() {
+    document.getElementById("image-overlay").style.display = "none";  // Hide the overlay
+}
+function openImage(img) {
+    console.log("Opening image:", img.src);  // Log image src
+    if (img && img.src) {
+        const overlayImg = document.getElementById("overlay-img");
+        overlayImg.src = img.src;  // Set the src of overlay image
+        document.getElementById("image-overlay").style.display = "flex";  // Show the overlay
+    }
+}
 
-        setInterval(() => moveSlide(1), 8500);  // Auto slide every 2.5 seconds
-    </script>
+
+// Autoslide stop feature(bug)
+let currentIndex = 0;
+let slideInterval;
+const testimonials = document.querySelector('.testimonial-wrapper');
+const testimonialCount = document.querySelectorAll('.testimonial').length;
+const visibleSlides = 2.5;
+const slideWidth = document.querySelector('.testimonial').offsetWidth + 20; // Include margin
+
+// Function to update the slide position
+function updateSlide() {
+    const offset = -currentIndex * slideWidth;
+    testimonials.style.transform = `translateX(${offset}px)`;
+}
+
+// Function to auto-slide
+function autoSlide() {
+    if (currentIndex < testimonialCount - visibleSlides) {
+        currentIndex++;
+    } else {
+        currentIndex = 0;
+    }
+    updateSlide();
+}
+
+// Start the auto slide interval
+function startAutoSlide() {
+    slideInterval = setInterval(autoSlide, 4000);
+}
+
+// Stop the auto slide interval
+function stopAutoSlide() {
+    clearInterval(slideInterval);
+}
+
+// Call the function to start auto sliding
+startAutoSlide();
+
+// Function for manual next slide
+function nextSlide() {
+    if (currentIndex < testimonialCount - visibleSlides) {
+        currentIndex++;
+    } else {
+        currentIndex = 0;
+    }
+    updateSlide();
+    stopAutoSlide();  // Stop auto sliding when clicked
+    resetAutoSlide(); // Restart auto sliding after some delay
+}
+
+// Function for manual previous slide
+function prevSlide() {
+    if (currentIndex > 0) {
+        currentIndex--;
+    } else {
+        currentIndex = testimonialCount - visibleSlides;
+    }
+    updateSlide();
+    stopAutoSlide();  // Stop auto sliding when clicked
+    resetAutoSlide(); // Restart auto sliding after some delay
+}
+
+// Function to restart auto slide after a delay
+function resetAutoSlide() {
+    setTimeout(startAutoSlide, 3000);  // Restart auto sliding after 3 seconds
+}
+
+// Event listeners for the manual slide buttons
+document.querySelector(".control-btn.prev").addEventListener("click", prevSlide);
+document.querySelector(".control-btn.next").addEventListener("click", nextSlide);
+
+// Pause auto slide when hovering over any testimonial
+document.querySelectorAll('.testimonial').forEach(testimonial => {
+    testimonial.addEventListener('mouseenter', stopAutoSlide); // Stop auto sliding on hover
+    testimonial.addEventListener('mouseleave', startAutoSlide); // Restart auto sliding when hover ends
+});
+
+
+//FAQs
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('open');
+  });
+});
+
+
+</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init({
@@ -974,6 +1355,8 @@ header nav a {
             offset: 100,    // Trigger animations when elements are 100px in view
         });
     </script>
+
+
     
 </body>
 </html>
