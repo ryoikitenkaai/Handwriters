@@ -3,1360 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hand Writers Publication</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-
-    <!-- global font -->
+    <title>Hand Writer Publication - Research & Patent Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-  <style>
-
-
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-
-    
-
-    /* General styling for both devices */
-body {
-    margin: 0;
-    font-family: 'Roboto Slab', sans-serif;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0f172a; /* Dark navy */
-    padding: 10px 20px;
-    color: #8ab47b; /* Green */
-}
-
-.title {
-    font-size: 1.5rem; /* Default font size for laptops */
-    font-weight: bold;
-}
-
-.nav-menu {
-    display: flex;
-    gap: 20px; /* Space between menu items */
-}
-
-.nav-menu a {
-    text-decoration: none;
-    color: #8ab47b; /* Green */
-    font-weight: bold;
-    font-size: 1rem; /* Default font size for laptops */
-}
-
-/* For mobile devices */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column; /* Stack title and navigation */
-        align-items: center;
-    }
-
-    .title {
-        font-size: 1.2rem; /* Smaller font size for mobile */
-        margin-bottom: 10px; /* Space between title and navigation */
-        text-align: center; /* Center-align the title */
-    }
-
-    .nav-menu {
-        flex-direction: column; /* Stack navigation links */
-        gap: 10px; /* Reduce gap between links */
-        text-align: center; /* Center-align links */
-        width: 100%; /* Full-width alignment */
-    }
-
-    .nav-menu a {
-        font-size: 0.9rem; /* Smaller font size for mobile links */
-    }
-}
-
-
-        @media screen and (max-width: 768px) {
-    .hero {
-        padding: 5rem 2rem; /* Reduce padding on small screens */
-    }
-
-    header .logo {
-        font-size: 2rem; /* Make logo smaller */
-    }
-
-    header nav a {
-        font-size: 1rem; /* Reduce font size */
-        margin-left: 1rem;
-    }
-
-    .services-cards {
-        grid-template-columns: 1fr; /* Stack service cards vertically */
-    }
-
-    .testimonial-slider {
-        width: 100%; /* Adjust width */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .hero h1 {
-        font-size: 2.5rem; /* Smaller font on mobile */
-    }
-
-    .hero p {
-        font-size: 1rem; /* Adjust text size */
-    }
-
-    .process-steps {
-        grid-template-columns: 1fr; /* Stack process steps */
-    }
-
-    .step img {
-        width: 40px; /* Adjust image size */
-    }
-}
-
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom,#000000, #00ff6a);
-            color: #e2e8f0;
-            overflow-x: hidden;
-            
-        }
-
-        header {
-            font-family: 'Open Sans', sans-serif;
-            background: #000000;
-            color: #000000;
-            padding: 1rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        header .logo {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 2.3rem;
-            font-weight: 650;
-            color: #ffffff;
-            width: 150%
-        }
-        header nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-
-/* General styling for both devices */
-body {
-    margin: 0;
-    font-family: Playwrite India, sans-serif;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #9ca2b1; /* Dark navy */
-    padding: 10px 20px;
-    color: #E6E6FA; /* Green */
-}
-
-.title {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.nav-menu {
-    display: flex;
-    gap: 20px; /* Space between menu items */
-}
-
-.nav-menu a {
-    text-decoration: none;
-    color: #8ab47b; /* Green */
-    font-weight: bold;
-}
-
-/* For mobile devices */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column; /* Stack title and navigation */
-        align-items: center;
-    }
-
-    .title {
-        margin-bottom: 10px; /* Space between title and navigation */
-        text-align: center; /* Center-align the title */
-    }
-
-    .nav-menu {
-        flex-direction: column; /* Stack navigation links */
-        gap: 10px; /* Reduce gap between links */
-        text-align: center; /* Center-align links */
-        width: 100%; /* Full-width alignment */
-    }
-}
-
-
-
-header nav a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 2rem;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-}
-
-        header nav a {
-            color: #e2e8f0;
-            text-decoration: none;
-            margin-left: 2rem;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        header nav a:hover {
-            color: #8ab47b;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 8rem 2rem;
-            background: linear-gradient(to bottom,#972727, #1a7255);
-            color: #ffffff;
-            background-image: url('pen-33981_1920.png');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: 20%;
-            
-            background-attachment: fixed;
-            position: relative;
-            
-            /* animation: fadeIn 1s ease-in; */
-        }
-
-        .hero h1 {
-            font-size: 4.7rem;
-            margin-bottom: 1.3rem;
-            font-weight: 790;
-            transition: opacity 0.6s ease;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .about-section {
-        /* background: linear-gradient(180deg, #717888, #1e293b); */
-        background: linear-gradient(to bottom,#022711, #000000);
-        color: #e2e8f0;
-        padding: 5rem 2rem;
-        text-align: center;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .about-section::before {
-        content: '';
-        position: absolute;
-        top: -10%;
-        left: -10%;
-        width: 120%;
-        height: 120%;
-        background: linear-gradient(145deg, rgba(138, 180, 123, 0.1), rgba(163, 169, 184, 0.5));
-        filter: blur(120px);
-        z-index: -1;
-    }
-
-    .about-section h2 {
-        font-size: 3rem;
-        color: #8ab47b;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        animation: fadeIn 1.5s ease-in-out;
-    }
-
-    .about-section p {
-        font-size: 1.4rem;
-        line-height: 1.8;
-        margin: 0 auto;
-        max-width: 700px;
-        animation: fadeIn 2s ease-in-out;
-    }
-
-    .about-section .highlight {
-        color: #8ab47b;
-        font-weight: bold;
-    }
-
-    .about-features {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        margin-top: 3rem;
-        flex-wrap: wrap;
-    }
-
-    .feature {
-        background: #1e293b;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        padding: 2rem;
-        width: 300px;
-        text-align: center;
-        animation: slideIn 1.5s ease-out;
-        transition: transform 0.3s;
-    }
-
-    .feature:hover {
-        transform: translateY(-10px);
-    }
-
-    .icon-container {
-        background: #8ab47b;
-        color: #0f172a;
-        font-size: 2rem;
-        width: 70px;
-        height: 70px;
-        margin: 0 auto 1rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        box-shadow: 0 5px 15px rgba(138, 180, 123, 0.4);
-        animation: popIn 1.2s ease-in-out;
-    }
-
-    .feature h3 {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        color: #8ab47b;
-    }
-
-    .feature p {
-        font-size: 1rem;
-        line-height: 1.6;
-        color: #e2e8f0;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes popIn {
-        0% {
-            transform: scale(0.8);
-            opacity: 0;
-        }
-        100% {
-            transform: scale(1);
-            opacity: 1;
-        }
-    }
-
-
-.stat-card {
-    background: #1e293b;
-    padding: 1.5rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.stat-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-
-.stat-card h3 {
-    font-size: 2.5rem;
-    color: #8ab47b;
-    margin-bottom: 0.5rem;
-}
-
-.stat-card p {
-    font-size: 1rem;
-    color: #e2e8f0;
-}
-
-/* SERVICES SECTION */
-.services {
-    padding: 4rem 2rem;
-    /* background: linear-gradient(135deg, #8ab47b, #8ab47b); Blue gradient */
-    background: linear-gradient(to bottom,#000000, #7c3b06);
-    color: #fff;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-}
-
-.services-header h2 {
-    font-size: 2.5rem;
-    color: #fff;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-}
-
-.services-header p {
-    font-size: 1rem;
-    color: #dcdcdc;
-    margin-bottom: 3rem;
-}
-
-.services-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    padding: 0 1rem;
-}
-
-.service-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 2rem 1.5rem;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    transition: transform 0.3s ease, background 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.service-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(18, 87, 44, 0.4), rgba(255, 255, 255, 0.2));
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    background: rgba(71, 214, 58, 0.2);
-}
-
-.service-card:hover::after {
-    opacity: 1;
-}
-
-.service-icon {
-    font-size: 3rem;
-    color: #4facfe;
-    margin-bottom: 1.5rem;
-}
-
-.service-card h3 {
-    font-size: 1.5rem;
-    color: #fff;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.service-card p {
-    font-size: 0.9rem;
-    color: #dcdcdc;
-    line-height: 1.6;
-}
-
-.process-section {
-    padding: 5rem 2rem;
-    background: #6c81a3;
-    text-align: center;
-    color: #596480;
-}
-
-.process-section h2 {
-    font-size: 3rem;
-    color: #38272783;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    font-family: Open Sans , sans-serif;
-
-}
-
-.process-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    justify-items: center;
-}
-
-.step {
-    background: #2d3852;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.step:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 15px rgba(189, 56, 56, 0.4);
-}
-
-.step .icon img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 1rem;
-}
-
-.step h3 {
-    font-size: 1.5rem;
-    color: #8ab47b;
-    margin-bottom: 0.5rem;
-}
-
-.step p {
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-
-
-        .contact-section {
-            background: linear-gradient(to bottom, #242121, #000000);
-            color: #e2e8f0;
-            padding: 5rem 2rem;
-            text-align: center;
-        }
-
-        .contact-section h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: #8ab47b;
-            font-weight: 800;
-        }
-
-        .contact-section p {
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .contact-section a {
-            color: #8ab47b;
-            text-decoration: none;
-            font-weight: 700;
-            transition: color 0.3s;
-        }
-
-        .contact-section a:hover {
-            color: #8ab47b;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: #000000;
-            color: #e2e8f0;
-            font-size: 1rem;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        #logoim{
-            width: 4%;
-        }
-        body {
-    position: relative;
-}
-
-.watermark {
-    position: fixed; /* Fix the logo in place */
-    top: 10%; /* Adjust the vertical position */
-    left: 10%; /* Adjust the horizontal position */
-    opacity: 0.1; /* Set the transparency for a watermark effect */
-    z-index: -1; /* Ensure the logo stays behind content */
-}
-
-.watermark img {
-    width: 200px; /* Adjust the logo size */
-    height: auto; /* Maintain aspect ratio */
-}
-
-
-/* Prossess */
-.publication-process {
-    padding: 4rem 2rem;
-    /* background: linear-gradient(135deg, #8ab47b, #8ab47b); */
-    background: linear-gradient(to bottom,#7e3810, #252121);
-    color: #0f172a;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-}
-
-.publication-process h2 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    color: #eadef0;
-    font-weight: 600;
-    font-family: 'Open Sans', sans-serif;
-    
-
-}
-
-.publication-process .section-intro {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    color: #e0e0e0;
-    line-height: 1.6;
-}
-
-.process-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.process-step {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    background: transparent;
-    padding: 1.5rem;
-    border-radius: 48px;
-    box-shadow: 0 80px 23px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.process-step:hover {
-    background: rgba(201, 151, 14, 0.2);
-    transform: scale(1.02);
-}
-
-.step-number {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #249283;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.step-content h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: #fff;
-}
-
-.step-content p {
-    font-size: 0.9rem;
-    color: #dcdcdc;
-    line-height: 1.5;
-}
-
-.testimonial-section {
-    background: linear-gradient(to top, #000000, #242020);
-    padding: 40px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.testimonial-container {
-    width: 100%;
-    max-width: 600px;
-    overflow: hidden;
-    position: relative;
-}
-
-.testimonial-wrapper {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: calc(6 * 32% + 60px); /* Adjust width for exact slides */
-}
-
-.testimonial {
-    flex: 0 0 calc(100% / 2.5); /* Show 2.5 slides */
-    margin: 0 10px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    transition: transform 0.5s ease-in-out;
-}
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.overlay img {
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 10px;
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-}
-
-
-.profile-pic {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
-}
-.testimonial-text {
-    flex: 1;
-    color: #fff;
-    font: italic;
-    font-size: large;
-    font-family: Open-Sans, sans-serif;
-}
-.testimonial-img {
-    width: 100%;
-    max-height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-top: 10px;
-}
-.controls {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-}
-.control-btn {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: none;
-    padding: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 50%;
-}
-.control-btn:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-.fancy-heading {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, #aeb8aa, #5c5c72);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-    animation: glow 1.5s infinite alternate;
-}
-
-@keyframes glow {
-    0% {
-        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-    }
-    100% {
-        text-shadow: 4px 4px 20px rgba(189, 189, 189, 0.8);
-    }
-}
-
-
-
-
-/*FAQs*/
-
-#faqs{
-    background: linear-gradient(to bottom,#000000, #241f1f);
-    color: #fff; 
-    padding: 40px;
-}
-.faq-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  
-}
-
-.faq-item {
-  background-color: #111410;
-  padding: 20px;
-  border-radius: 8px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.faq-item:hover {
-  transform: translateY(-5px);
-  background-color: #2d2f33;
-}
-
-.faq-question {
-  font-size: 18px;
-  font-weight: bold;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-.faq-answer {
-  display: none;
-  margin-top: 10px;
-  font-size: 16px;
-  color: #ccc;
-}
-
-.faq-item.open .faq-answer {
-  display: block;
-}
-
-.faq-item.open .faq-question {
-  color: #ffffff;
-}
-
-.faq-item .faq-question:hover {
-  color: #abc0a3;
-}
-.fancy-heading2 {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    background: linear-gradient(180deg, #b9c7b3, #09090a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-    animation: glow 1.5s infinite alternate;
-}
-
-
-.contact-email {
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ffffff;
-    margin-top: 20px;
-}
-
-.email-link {
-    display: inline;
-    background: transparent;
-    padding: 10px 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    transition: 0.3s ease-in-out;
-}
-
-.email-link:hover {
-    background: linear-gradient(45deg, #0f172a, #8ab47b);
-    transform: scale(1.1);
-}
-
-
-    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    
-    
-    <header>
-        <div class="logo"> <img src="pen-33981_1920.png" alt="" id="logoim"> &nbsp;Hand Writers Publication</div>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <p>Do you want your paper published? <a href="#contact" class="banner-cta">Consult our experts now!</a></p>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <img src="logo.png" alt="Hand Writer Publication Logo">
+        </div>
         
-        <nav class="nav-menu">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#process">Process</a>
-            <a href="#testimonials">Testimonials</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <div class="header-content">
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#patents">Patents</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#consult" class="cta-button">Consult Our Research Expert</a>
+        </div>
+        
+        <!-- Mobile Menu Button -->
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
     </header>
 
-
-    
-    <section class="hero">
-        
-        <h1>Publish Your Research with Confidence</h1>
-        <p>We provide top-tier journal publication support, ensuring your research gets the attention it deserves.</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Premium Research Publication Services</h1>
+            <p>Get your research papers published in reputed journals with our expert guidance</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">Our Services</a>
+                <a href="#contact" class="btn-secondary">Get a Quote</a>
+            </div>
+        </div>
     </section>
 
-    <section class="about-section" id="about">
-        <div class="about-content">
-            <h2>About Us</h2>
-            <p>
-                Welcome to <span class="highlight">Hand Writers Publication</span> — your trusted partner in research and publication.
-                We specialize in empowering researchers and academicians by bridging the gap between groundbreaking ideas 
-                and globally recognized journals. From manuscript preparation to final publication, we provide end-to-end support tailored to your needs.
-            </p>
-            <div class="about-features">
-                <div class="feature">
-                    <div class="icon-container">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>Integrity</h3>
-                    <p>We prioritize authentic, high-quality research to ensure your work stands out globally.</p>
+    <!-- Achievements Section -->
+    <section class="achievements">
+        <div class="container">
+            <h2 class="section-title">Our Milestones</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-text">Research Papers Published</div>
                 </div>
-                <div class="feature">
-                    <div class="icon-container">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Innovation</h3>
-                    <p>Our cutting-edge methods and tools simplify the research process for you.</p>
+                <div class="stat-card">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-text">Patent Applications Filed</div>
                 </div>
-                <div class="feature">
-                    <div class="icon-container">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Collaboration</h3>
-                    <p>We believe in teamwork to transform your ideas into impactful publications.</p>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-text">International Journals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-text">Client Satisfaction Rate</div>
                 </div>
             </div>
         </div>
     </section>
-    
-    
 
-    <section class="services" id="services">
-        <div class="services-header">
-            <h2>Our Services</h2>
-            <p>We provide tailored solutions to meet all your research and publication needs.</p>
-        </div>
-    
-        <div class="services-cards">
-            <div class="service-card" data-aos="zoom-in">
-                <div class="service-icon">
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
                     <i class="fas fa-book-open"></i>
+                    <h3>Research Publication</h3>
+                    <p>Comprehensive support for publishing in SCI, Scopus, and peer-reviewed journals</p>
                 </div>
-                <h3>Research Publication</h3>
-                <p>Get your work published in reputed journals with our expert guidance and support.</p>
-            </div>
-    
-            <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
-                <div class="service-icon">
-                    <i class="fas fa-flask"></i>
+                <div class="service-card">
+                    <i class="fas fa-scroll"></i>
+                    <h3>Patent Filing</h3>
+                    <p>End-to-end patent drafting and filing services worldwide</p>
                 </div>
-                <h3>Research Assistance</h3>
-                <p>Comprehensive assistance to simplify and enhance your research journey.</p>
-            </div>
-    
-            <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
-                <div class="service-icon">
-                    <i class="fas fa-pencil-alt"></i>
+                <div class="service-card">
+                    <i class="fas fa-edit"></i>
+                    <h3>Manuscript Editing</h3>
+                    <p>Professional editing to meet journal standards</p>
                 </div>
-                <h3>Article/Research Writing</h3>
-                <p>Professional writing services to bring your ideas to life with precision.</p>
-            </div>
-    
-            <div class="service-card" data-aos="zoom-in" data-aos-delay="600">
-                <div class="service-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Patent</h3>
-                <p>Secure your intellectual property with our efficient patent filing services.</p>
-            </div>
-        </div>
-    </section>
-    
-
-    <section class="publication-process" id="process">
-        <h2>Our Publication Process</h2>
-        <p class="section-intro">We ensure a seamless, transparent, and efficient process for getting your research published.</p>
-    
-        <div class="process-container">
-            <div class="process-step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3>Provide Indexing Requirements</h3>
-                    <p>Share your indexing requirements to ensure the paper aligns with your academic goals.</p>
-                </div>
-            </div>
-    
-            <div class="process-step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3>Share the Scope of the Paper</h3>
-                    <p>Provide details about the subject area, focus, and objectives to help us understand its domain.</p>
-                </div>
-            </div>
-    
-            <div class="process-step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3>Discuss the Timeline</h3>
-                    <p>Define expectations for acceptance, revision, and publication phases.</p>
-                </div>
-            </div>
-    
-            <div class="process-step">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <h3>Shortlist Journals</h3>
-                    <p>We curate a list of journals matching your paper’s field, ensuring relevance and high acceptance chances.</p>
-                </div>
-            </div>
-    
-            <div class="process-step">
-                <div class="step-number">5</div>
-                <div class="step-content">
-                    <h3>Verify and Finalize the Journal</h3>
-                    <p>Review and finalize the journal based on authenticity, indexing, and other factors.</p>
-                </div>
-            </div>
-    
-            <div class="process-step">
-                <div class="step-number">6</div>
-                <div class="step-content">
-                    <h3>Receive Acceptance Notification</h3>
-                    <p>We update you on the journal’s decision regarding your paper submission.</p>
-                </div>
-            </div>
-    
-            <div class="process-step">
-                <div class="step-number">7</div>
-                <div class="step-content">
-                    <h3>Pay the Article Processing Charges (APC)</h3>
-                    <p>Once accepted, pay the APC to proceed with the publication.</p>
-                </div>
-            </div>
-    
-            <div class="process-step">
-                <div class="step-number">8</div>
-                <div class="step-content">
-                    <h3>Submit the Final Revision</h3>
-                    <p>Submit the revised version based on feedback from reviewers and editors.</p>
-                </div>
-            </div>
-    
-            <div class="process-step">
-                <div class="step-number">9</div>
-                <div class="step-content">
-                    <h3>Receive the Paper URL</h3>
-                    <p>Get the official URL of your published paper for sharing and record-keeping.</p>
+                <div class="service-card">
+                    <i class="fas fa-search"></i>
+                    <h3>Plagiarism Check</h3>
+                    <p>Advanced plagiarism checking and reduction</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    
-    
-    <section class="testimonial-section" id="testimonials">
-        
-        <div id="image-overlay" class="overlay">
-            <span class="close-btn" onclick="closeImage()">&times;</span>
-            <img id="overlay-img" src="" alt="Full View">
-        </div>
-        
-        <div class="testimonial-container">
-            <h2 class="fancy-heading" id="testh2">What our clients say!</h2><br>
-            <div class="testimonial-wrapper">
-                <!-- Testimonial 1 -->
-                <div class="testimonial">
-                    
-                    <div class="testimonial-text">
-                        <p>"Hand Writers made my publishing journey smooth and hassle-free. The team was incredibly supportive, and the payment after acceptance model is a game-changer. Highly recommended!"</p>
-                        <img src="t1.jpg" alt="Attached Image 1" class="testimonial-img">
-                    </div>
-                </div>
-                <!-- Repeat for Testimonial 2 to 6 -->
-                <div class="testimonial">
-                    
-                    <div class="testimonial-text">
-                        <p>"I was skeptical about online publishing services, but Hand Writers proved me wrong. Their end-to-end publication support and guidance were exactly what I needed. I couldn't be happier with the outcome!"</p>
-                        <img src="t2.jpg" alt="Attached Image 1" class="testimonial-img" onclick="openImage(this)">
-                    </div>
-                </div>
-                <div class="testimonial">
-                   
-                    <div class="testimonial-text">
-                        <p>"Unlike other firms, Hand Writers focuses on genuine publication without hidden charges. The flexibility of payment after acceptance gave me the confidence to move forward with my research."</p>
-                        <img src="t3.jpg" alt="Attached Image 1" class="testimonial-img" onclick="openImage(this)">
-                    </div>
-                </div>
-                <div class="testimonial">
-                   
-                    <div class="testimonial-text">
-                        <p>"From formatting to final publication, Hand Writers handled everything professionally. Their transparent process and quick response times made it a delightful experience."</p>
-                        <img src="t4.jpg" alt="Attached Image 1" class="testimonial-img" onclick="openImage(this)">
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-text">
-                        <p>"The personalized support I received from Hand Writers was outstanding. Their expertise in research formatting and editing took my paper to the next level."</p>
-                        <img src="t5.jpg" alt="Attached Image 1" class="testimonial-img" onclick="openImage(this)">
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-text">
-                        <p>"Loved it! Highly professional and skilled team!"</p>
-                        <img src="t6.jpg" alt="Attached Image 1" class="testimonial-img" onclick="openImage(this)">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Navigation Buttons -->
-            <div class="controls">
-                <button class="control-btn prev">&#10094;</button>
-                <button class="control-btn next">&#10095;</button>
-            </div>
+
+    <!-- Quote Section -->
+<section class="quote-section">
+    <div class="container">
+        <div class="quote-text">Your investment is secured with us</div>
+    </div>
+</section>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Publish Your Research?</h2>
+            <p>Our experts will guide you through the entire publication process</p>
+            <a href="#contact" class="btn-primary">Get Started Today</a>
         </div>
     </section>
-    
-    
-    
 
-
-    
-
-    
-    <section  id="faqs" >
-        <h2  class="fancy-heading2" style="text-align: center; color: #8ab47b;">Frequently Asked Questions</h2>
-        
-        <div class="faq-container">
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>What is your publication guarantee?</span>
-            </div>
-            <div class="faq-answer">
-              <p>We guarantee 100% publication once your paper is accepted by the journal. With our expert services, we proudly maintain a 95% acceptance rate.</p>
-            </div>
-          </div>
-          
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>When should I pay the APC (Article Processing Charge)?</span>
-            </div>
-            <div class="faq-answer">
-              <p>The APC is payable only after your paper gets published. We do not charge any submission fees.</p>
-            </div>
-          </div>
-      
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>How do you assist with the publication process?</span>
-            </div>
-            <div class="faq-answer">
-              <p>We are a third-party service provider that helps make your paper ready for publication. After you submit your paper, we ensure it meets all journal requirements and is refined for acceptance.</p>
-            </div>
-          </div>
-      
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Do you have any service charges?</span>
-            </div>
-            <div class="faq-answer">
-              <p>Yes, our service charges are variable and depend on the work required for your paper. The more detailed the work needed, the higher the charge.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-    
-
-    
-    
-    <section class="contact-section" id="contact">
-        <h2>Contact Us</h2>
-        <p>Connect with us on social media:</p>
-        <p>
-            <a href="https://www.facebook.com/profile.php?id=61552444291691" target="_blank">Facebook</a> |
-            
-            <a href="https://wa.me/+916205170397" target="_blank">WhatsApp</a>
-        </p>
-        <div class="contact-email">
-            <p>📧 Reach us at:</p>
-            <a href="mailto:submissionwrittingservices@outlook.com" class="email-link">submissionwrittingservices@outlook.com</a>
-        </div>
-        
-    </section>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Hand Writers Publication. All Rights Reserved.</p>
+        <div class="footer-content">
+            <div class="footer-col">
+                <img src="logo.png" alt="Logo" class="footer-logo">
+                <p>Your trusted partner in research publication and patent services</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#patents">Patents</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> info@handwriterspublication.in</p>
+                <p><i class="fas fa-phone"></i></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Hand Writer Publication. All rights reserved.</p>
+        </div>
     </footer>
 
+    <!-- Floating Research Bubble -->
+<div class="research-bubble">
+    <div class="bubble-container" id="researchBubble">
+        <span class="bubble-close" id="closeBubble">&times;</span>
+        <h4>Research Specializations</h4>
+        <div class="research-tags">
+            <span class="research-tag">SCOPUS</span>
+            <span class="research-tag">SCI</span>
+            <span class="research-tag">SCIE</span>
+            <span class="research-tag">SJR</span>
+            <span class="research-tag">PubMed</span>
+            <span class="research-tag">Peer Review</span>
+            <span class="research-tag">Impact Factor</span>
+            <span class="research-tag">H-Index</span>
+        </div>
+        <div class="bubble-cta">Consult Our Expert</div>
+    </div>
+    <div class="bubble-trigger" id="bubbleTrigger">
+        <img src="https://cdn-icons-png.flaticon.com/512/3663/3663918.png" width="60" alt="Research Help">
+    </div>
+</div>
+    <script src="script.js"></script>
 
-
-
-    <script>
-
-function openImage(img) {
-    // First, check if the image source is being passed correctly
-    if (img && img.src) {
-        const overlayImg = document.getElementById("overlay-img");
-        overlayImg.src = img.src;  // Set the src of overlay image
-        document.getElementById("image-overlay").style.display = "flex";  // Show the overlay
-    }
-}
-
-function closeImage() {
-    document.getElementById("image-overlay").style.display = "none";  // Hide the overlay
-}
-function openImage(img) {
-    console.log("Opening image:", img.src);  // Log image src
-    if (img && img.src) {
-        const overlayImg = document.getElementById("overlay-img");
-        overlayImg.src = img.src;  // Set the src of overlay image
-        document.getElementById("image-overlay").style.display = "flex";  // Show the overlay
-    }
-}
-
-
-// Autoslide stop feature(bug)
-let currentIndex = 0;
-let slideInterval;
-const testimonials = document.querySelector('.testimonial-wrapper');
-const testimonialCount = document.querySelectorAll('.testimonial').length;
-const visibleSlides = 2.5;
-const slideWidth = document.querySelector('.testimonial').offsetWidth + 20; // Include margin
-
-// Function to update the slide position
-function updateSlide() {
-    const offset = -currentIndex * slideWidth;
-    testimonials.style.transform = `translateX(${offset}px)`;
-}
-
-// Function to auto-slide
-function autoSlide() {
-    if (currentIndex < testimonialCount - visibleSlides) {
-        currentIndex++;
-    } else {
-        currentIndex = 0;
-    }
-    updateSlide();
-}
-
-// Start the auto slide interval
-function startAutoSlide() {
-    slideInterval = setInterval(autoSlide, 4000);
-}
-
-// Stop the auto slide interval
-function stopAutoSlide() {
-    clearInterval(slideInterval);
-}
-
-// Call the function to start auto sliding
-startAutoSlide();
-
-// Function for manual next slide
-function nextSlide() {
-    if (currentIndex < testimonialCount - visibleSlides) {
-        currentIndex++;
-    } else {
-        currentIndex = 0;
-    }
-    updateSlide();
-    stopAutoSlide();  // Stop auto sliding when clicked
-    resetAutoSlide(); // Restart auto sliding after some delay
-}
-
-// Function for manual previous slide
-function prevSlide() {
-    if (currentIndex > 0) {
-        currentIndex--;
-    } else {
-        currentIndex = testimonialCount - visibleSlides;
-    }
-    updateSlide();
-    stopAutoSlide();  // Stop auto sliding when clicked
-    resetAutoSlide(); // Restart auto sliding after some delay
-}
-
-// Function to restart auto slide after a delay
-function resetAutoSlide() {
-    setTimeout(startAutoSlide, 3000);  // Restart auto sliding after 3 seconds
-}
-
-// Event listeners for the manual slide buttons
-document.querySelector(".control-btn.prev").addEventListener("click", prevSlide);
-document.querySelector(".control-btn.next").addEventListener("click", nextSlide);
-
-// Pause auto slide when hovering over any testimonial
-document.querySelectorAll('.testimonial').forEach(testimonial => {
-    testimonial.addEventListener('mouseenter', stopAutoSlide); // Stop auto sliding on hover
-    testimonial.addEventListener('mouseleave', startAutoSlide); // Restart auto sliding when hover ends
-});
-
-
-//FAQs
-const faqItems = document.querySelectorAll('.faq-item');
-
-faqItems.forEach(item => {
-  item.addEventListener('click', () => {
-    item.classList.toggle('open');
-  });
-});
-
-
-</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000, // Animation duration in milliseconds
-            offset: 100,    // Trigger animations when elements are 100px in view
-        });
-    </script>
-
-
-    
 </body>
 </html>
