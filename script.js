@@ -147,3 +147,55 @@ document.addEventListener("DOMContentLoaded", function() {
       document.documentElement.className += ' no-svg';
     }
   });
+  
+// Testimonial Slider
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.testimonials-track');
+    const cards = document.querySelectorAll('.testimonial-card');
+    const prevBtn = document.querySelector('.slider-prev');
+    const nextBtn = document.querySelector('.slider-next');
+    let currentIndex = 0;
+    const cardCount = cards.length;
+    
+    function updateSlider() {
+        const cardWidth = cards[0].offsetWidth;
+        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+    }
+    
+    nextBtn.addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % cardCount;
+        updateSlider();
+    });
+    
+    prevBtn.addEventListener('click', function() {
+        currentIndex = (currentIndex - 1 + cardCount) % cardCount;
+        updateSlider();
+    });
+    
+    // Image Viewer
+    const modal = document.querySelector('.image-viewer-modal');
+    const modalImg = document.getElementById('modal-image');
+    const closeModal = document.querySelector('.close-modal');
+    const viewButtons = document.querySelectorAll('.view-screenshot-btn');
+    
+    viewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const imgSrc = this.getAttribute('data-image');
+            modalImg.src = imgSrc;
+            modal.style.display = "block";
+        });
+    });
+    
+    closeModal.addEventListener('click', function() {
+        modal.style.display = "none";
+    });
+    
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+    
+    // Initialize slider on load
+    updateSlider();
+});
