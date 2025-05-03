@@ -87,11 +87,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-// Floating Research Bubble
-const bubbleTrigger = document.getElementById('bubbleTrigger');
-const researchBubble = document.getElementById('researchBubble');
-const closeBubble = document.getElementById('closeBubble');
-
+document.addEventListener('DOMContentLoaded', function() {
+    const bubbleTrigger = document.getElementById('bubbleTrigger');
+    const researchBubble = document.getElementById('researchBubble');
+    const closeBubble = document.getElementById('closeBubble');
+    
+    bubbleTrigger.addEventListener('click', function() {
+        researchBubble.classList.toggle('active');
+    });
+    
+    closeBubble.addEventListener('click', function() {
+        researchBubble.classList.remove('active');
+    });
+    
+    // Close when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.research-bubble') && researchBubble.classList.contains('active')) {
+            researchBubble.classList.remove('active');
+        }
+    });
+});
 // Show bubble after 5 seconds
 setTimeout(() => {
     researchBubble.style.display = 'block';

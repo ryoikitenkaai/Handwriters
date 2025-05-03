@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - HandWriters Publication</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --header-blue: #1f2c3b;
+            --body-cream: #f1e5cb;
+            --accent-gold: #c4a86f;
+            --light-gold: rgba(196, 168, 111, 0.2);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--body-cream);
+            color: var(--header-blue);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+            position: relative;
+        }
+        
+        .services-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .services-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 600;
+            color: var(--header-blue);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .services-header h1::after {
+            content: '';
+            position: absolute;
+            width: 6rem;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            bottom: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .services-header p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        .services-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            position: relative;
+        }
+        
+        .service-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .service-icon {
+            width: 8rem;
+            height: 8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .service-icon:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--light-gold);
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+            z-index: 0;
+        }
+        
+        .service-icon:hover::before {
+            transform: scale(1.1);
+        }
+        
+        .service-icon i {
+            font-size: 3rem;
+            color: var(--header-blue);
+            z-index: 1;
+        }
+        
+        .service-content {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .service-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 1.5rem;
+            color: var(--header-blue);
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .service-content h3::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            bottom: -0.5rem;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .service-content h3:hover::after {
+            width: 100%;
+        }
+        
+        .service-content ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-content li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+            text-align: left;
+        }
+        
+        .service-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+        
+        .consult-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--header-blue);
+            border: 1px solid var(--accent-gold);
+            padding: 0.6rem 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .consult-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(196, 168, 111, 0.1), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .consult-btn:hover {
+            background: var(--accent-gold);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .consult-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Popup styles */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 5px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .popup.active .popup-content {
+            transform: translateY(0);
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--header-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .popup-close:hover {
+            color: var(--accent-gold);
+            transform: rotate(90deg);
+        }
+        
+        .popup h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--header-blue);
+        }
+        
+        .popup p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .popup-form input,
+        .popup-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .popup-form button {
+            background: var(--accent-gold);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-form button:hover {
+            background: var(--header-blue);
+        }
+        
+        /* Floating consultation button */
+        .floating-consult {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-gold);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-consult:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .floating-consult i {
+            font-size: 1.5rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .service-item {
+                flex-direction: row;
+                align-items: flex-start;
+                text-align: left;
+                padding: 3rem 0;
+            }
+            
+            .service-item:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+            
+            .service-icon {
+                margin-bottom: 0;
+                margin-right: 2rem;
+                width: 10rem;
+                height: 10rem;
+            }
+            
+            .service-item:nth-child(even) .service-icon {
+                margin-right: 0;
+                margin-left: 2rem;
+            }
+            
+            .service-content {
+                text-align: left;
+                flex: 1;
+            }
+            
+            .consult-btn {
+                margin-top: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .services-container {
+                padding: 3rem 1rem;
+            }
+            
+            .service-icon {
+                width: 6rem;
+                height: 6rem;
+            }
+            
+            .service-icon i {
+                font-size: 2.5rem;
+            }
+            
+            .floating-consult {
+                width: 50px;
+                height: 50px;
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .back-to-home {
+                top: 1.5rem;
+                left: 1.5rem;
+            }
+            
+            .services-container {
+                padding-top: 5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .back-to-home span {
+                display: none;
+            }
+            
+            .back-to-home i {
+                margin-right: 0;
+                font-size: 1.3rem;
+            }
+        }
+        /* Back to Home Button */
+        .back-to-home {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--header-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-home i {
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-to-home span {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        .back-to-home:hover {
+            color: var(--accent-gold);
+        }
+        
+        .back-to-home:hover i {
+            transform: translateX(-3px);
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-to-home">
+        <i class="fas fa-arrow-left"></i>
+        <span>Back to Home</span>
+    </a>
+    <div class="services-container">
+        
+        </button>
+        <div class="services-header">
+            <h1>Our Publication Services</h1>
+            <p>At HandWriters Publication, we offer specialized services to support your journey from manuscript to publication with excellence and precision.</p>
+        </div>
+        
+        <div class="services-flow">
+            <!-- Service 1 -->
+            <div class="service-item">
+                <div class="service-icon" onclick="openPopup('writing')">
+                    <i class="fas fa-pen-fancy"></i>
+                </div>
+                <div class="service-content">
+                    <h3 onclick="openPopup('writing')">Article Writing & Formatting</h3>
+                    <ul>
+                        <li>Assistance with original research, review, case study, or technical papers</li>
+                        <li>Journal-specific formatting and compliance with guidelines</li>
+                    </ul>
+                    <button class="consult-btn" onclick="openConsultPopup('Article Writing Service')">
+                        Consult Our Writing Expert
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-item">
+                <div class="service-icon" onclick="openPopup('editing')">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <div class="service-content">
+                    <h3 onclick="openPopup('editing')">Editing & Proofreading</h3>
+                    <ul>
+                        <li>Grammar, structure, and flow correction by academic editors</li>
+                        <li>Plagiarism reduction and paraphrasing support</li>
+                    </ul>
+                    <button class="consult-btn" onclick="openConsultPopup('Editing Service')">
+                        Speak to an Editor
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-item">
+                <div class="service-icon" onclick="openPopup('journal')">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="service-content">
+                    <h3 onclick="openPopup('journal')">Journal Selection & Submission</h3>
+                    <ul>
+                        <li>Personalized journal matching based on scope, indexing, and impact</li>
+                        <li>Support for submission to Scopus, WoS, PubMed, etc.</li>
+                    </ul>
+                    <button class="consult-btn" onclick="openConsultPopup('Journal Selection')">
+                        Get Journal Recommendations
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="service-item">
+                <div class="service-icon" onclick="openPopup('consultancy')">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="service-content">
+                    <h3 onclick="openPopup('consultancy')">Publishing Consultancy</h3>
+                    <ul>
+                        <li>Guidance on ethics, DOIs, open-access policies, and indexing</li>
+                        <li>Tied-up agencies handle formal communication and process management</li>
+                    </ul>
+                    <button class="consult-btn" onclick="openConsultPopup('Publishing Consultancy')">
+                        Schedule Consultation
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Service 5 -->
+            <div class="service-item">
+                <div class="service-icon" onclick="openPopup('research')">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="service-content">
+                    <h3 onclick="openPopup('research')">Research Guidance</h3>
+                    <ul>
+                        <li>Literature review assistance</li>
+                        <li>Thesis-to-article conversion</li>
+                        <li>Ongoing support for PhD scholars and postgraduates</li>
+                    </ul>
+                    <button class="consult-btn" onclick="openConsultPopup('Research Guidance')">
+                        Connect with Research Mentor
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating consultation button -->
+    <div class="floating-consult" onclick="openConsultPopup('General Inquiry')">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Popup for service details -->
+    <div class="popup" id="servicePopup">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <h3 id="popupTitle">Service Details</h3>
+            <div id="popupContent">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Consultation popup form -->
+    <div class="popup" id="consultPopup">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <h3>Consult Our Expert</h3>
+            <p id="consultServiceText">We'll connect you with a specialist to discuss your needs.</p>
+            <form class="popup-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject" id="consultSubject" required>
+                <textarea placeholder="How can we help you?" rows="4" required></textarea>
+                <button type="submit">Request Consultation</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Service details content
+        const serviceDetails = {
+            writing: {
+                title: "Article Writing & Formatting",
+                content: `
+                    <p>Our expert writers assist with creating high-quality academic papers including:</p>
+                    <ul>
+                        <li>Original research articles</li>
+                        <li>Comprehensive review papers</li>
+                        <li>Detailed case studies</li>
+                        <li>Technical research papers</li>
+                    </ul>
+                    <p>We ensure your manuscript meets all journal-specific formatting requirements and compliance guidelines for your target publication.</p>
+                `
+            },
+            editing: {
+                title: "Editing & Proofreading",
+                content: `
+                    <p>Our academic editing services include:</p>
+                    <ul>
+                        <li>Comprehensive grammar and syntax correction</li>
+                        <li>Structural improvements for better flow</li>
+                        <li>Academic tone refinement</li>
+                        <li>Plagiarism reduction strategies</li>
+                        <li>Paraphrasing support while maintaining your original voice</li>
+                    </ul>
+                    <p>All edits are performed by PhD-qualified editors in your field.</p>
+                `
+            },
+            journal: {
+                title: "Journal Selection & Submission",
+                content: `
+                    <p>We help you navigate the complex journal selection process with:</p>
+                    <ul>
+                        <li>Personalized journal matching based on your research scope</li>
+                        <li>Analysis of indexing (Scopus, WoS, PubMed, etc.)</li>
+                        <li>Impact factor and reputation assessment</li>
+                        <li>Submission strategy development</li>
+                    </ul>
+                    <p>Our team handles the entire submission process, including communication with editors.</p>
+                `
+            },
+            consultancy: {
+                title: "Publishing Consultancy",
+                content: `
+                    <p>Our publishing consultants provide guidance on:</p>
+                    <ul>
+                        <li>Publication ethics and best practices</li>
+                        <li>DOI acquisition and management</li>
+                        <li>Open-access policy navigation</li>
+                        <li>Indexing requirements and strategies</li>
+                    </ul>
+                    <p>We work with a network of tied-up agencies to handle all formal communications and process management.</p>
+                `
+            },
+            research: {
+                title: "Research Guidance",
+                content: `
+                    <p>Comprehensive support for researchers at all levels:</p>
+                    <ul>
+                        <li>Systematic literature review assistance</li>
+                        <li>Thesis-to-article conversion services</li>
+                        <li>Ongoing mentorship for PhD candidates</li>
+                        <li>Postgraduate research support</li>
+                        <li>Methodology consultation</li>
+                    </ul>
+                    <p>Our mentors are experienced researchers with successful publication records.</p>
+                `
+            }
+        };
+
+        // Open service detail popup
+        function openPopup(service) {
+            const popup = document.getElementById('servicePopup');
+            document.getElementById('popupTitle').textContent = serviceDetails[service].title;
+            document.getElementById('popupContent').innerHTML = serviceDetails[service].content;
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Open consultation popup
+        function openConsultPopup(service) {
+            const popup = document.getElementById('consultPopup');
+            document.getElementById('consultServiceText').textContent = `Discuss "${service}" with our expert:`;
+            document.getElementById('consultSubject').value = service;
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close popup
+        function closePopup() {
+            document.querySelectorAll('.popup').forEach(popup => {
+                popup.classList.remove('active');
+            });
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close popup when clicking outside content
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('popup')) {
+                closePopup();
+            }
+        });
+
+        // Form submission
+        document.querySelector('.popup-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your consultation request! Our expert will contact you within 24 hours.');
+            closePopup();
+        });
+
+        // Mobile menu toggle would go here if needed
+    </script>
+</body>
+</html>

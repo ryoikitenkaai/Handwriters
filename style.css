@@ -240,13 +240,13 @@ nav ul li a:hover {
 
 /* Services Section */
 .services {
-    padding: 80px 0;
+    padding: 70px 0;
     background-color: white;
 }
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 30px;
     margin-top: 50px;
 }
@@ -414,69 +414,237 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Floating Research Bubble */
+/* Research Bubble Styles */
 .research-bubble {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 999;
-    cursor: pointer;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+}
+
+.bubble-trigger {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #FF6D00, #E31937);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bubble-trigger:hover {
+  transform: scale(1.1);
+}
+
+.bubble-trigger img {
+  width: 30px;
+  filter: brightness(0) invert(1);
 }
 
 .bubble-container {
-    position: relative;
-    display: none;
-    width: 250px;
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    border: 1px solid rgba(169, 142, 87, 0.3);
+  display: none;
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 280px;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  border: 1px solid rgba(169, 142, 87, 0.3);
+}
+
+.bubble-container.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .bubble-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.2rem;
-    color: #a98e57;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.3rem;
+  color: #a98e57;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.bubble-container h4 {
+  font-family: 'Playfair Display', serif;
+  color: #1f2c3b;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 .research-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .research-tag {
-    background: #f1e5cb;
-    color: #1c3142;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Size Variations */
+.big-bubble {
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 25px;
+}
+
+.medium-bubble {
+  font-size: 0.9rem;
+  padding: 6px 12px;
+}
+
+.small-bubble {
+  font-size: 0.8rem;
+  padding: 4px 10px;
+}
+
+/* Theme Variations */
+.scopus-bubble {
+  background: #FF6D00;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+}
+
+.sjr-bubble {
+  background: #0056A7;
+  color: white;
+  font-family: 'Verdana', sans-serif;
+}
+
+.wos-bubble {
+  background: #8A2BE2;
+  color: white;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+}
+
+.pubmed-bubble {
+  background: #3366CC;
+  color: white;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+.abdc-bubble {
+  background: #228B22;
+  color: white;
+  font-family: 'Courier New', monospace;
+}
+
+.doaj-bubble {
+  background: #2E8B57;
+  color: white;
+  font-family: 'Arial Narrow', sans-serif;
+}
+
+.oa-bubble {
+  background: #4CAF50;
+  color: white;
+  font-family: 'Lucida Sans', sans-serif;
+}
+
+.peer-bubble {
+  background: #607D8B;
+  color: white;
+  font-family: 'Palatino', serif;
+}
+
+.scholar-bubble {
+  background: #4285F4;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+.hec-bubble {
+  background: #795548;
+  color: white;
+  font-family: 'Times New Roman', serif;
+}
+
+.q1-bubble {
+  background: #E91E63;
+  color: white;
+  font-family: 'Impact', sans-serif;
+}
+
+.q2-bubble {
+  background: #9C27B0;
+  color: white;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+.q3-bubble {
+  background: #3F51B5;
+  color: white;
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+}
+
+.q4-bubble {
+  background: #00BCD4;
+  color: white;
+  font-family: 'Century Gothic', sans-serif;
 }
 
 .research-tag:hover {
-    background: #a98e57;
-    color: white;
-    transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 
 .bubble-cta {
-    background: #1c3142;
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-top: 15px;
+  background: linear-gradient(to right, #1f2c3b, #2c3e50);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
+.bubble-cta:hover {
+  background: linear-gradient(to right, #2c3e50, #1f2c3b);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .research-bubble {
+      right: 10px;
+      bottom: 10px;
+  }
+  
+  .bubble-trigger {
+      width: 50px;
+      height: 50px;
+  }
+  
+  .bubble-container {
+      width: 260px;
+      padding: 15px;
+  }
+}
 /* Responsive Styles */
 @media (max-width: 992px) {
     .header-content {
@@ -869,3 +1037,147 @@ footer {
       grid-template-columns: 1fr;
     }
   }
+/* Elegant Comparison Table Styles */
+.elegant-comparison {
+  padding: 80px 0;
+  background-color: #fcfaf7;
+  font-family: 'Lora', serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: #1a2634;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+}
+
+.divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, #a98e57, #d4b87a);
+  margin: 0 auto 20px;
+}
+
+.subtitle {
+  color: #5c6b7a;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.comparison-container {
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 700px;
+}
+
+.comparison-table th {
+  padding: 18px 25px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+.criteria-header {
+  background-color: #2c3e50;
+  color: white;
+  border-radius: 6px 0 0 0;
+}
+
+.standard-header {
+  background-color: #5c6b7a;
+  color: white;
+}
+
+.premium-header {
+  background-color: #a98e57;
+  color: white;
+  border-radius: 0 6px 0 0;
+}
+
+.comparison-table td {
+  padding: 16px 25px;
+  border-bottom: 1px solid #eaeaea;
+  text-align: center;
+}
+
+.criteria {
+  background-color: #f5f7fa;
+  color: #2c3e50;
+  font-weight: 500;
+  text-align: left;
+}
+
+.standard {
+  background-color: white;
+  color: #5c6b7a;
+}
+
+.premium {
+  background-color: #faf6f0;
+  color: #1a2634;
+  font-weight: 500;
+  position: relative;
+}
+
+.highlight-badge {
+  display: inline-block;
+  background-color: #e8d9bd;
+  color: #8a6d3b;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+/* Hover Effects */
+.comparison-table tr:hover td {
+  background-color: #f0f4f8;
+}
+
+.comparison-table tr:hover .premium {
+  background-color: #f5efe5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: 14px 15px;
+    font-size: 0.95rem;
+  }
+  
+  .highlight-badge {
+    display: block;
+    margin: 5px 0 0;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
