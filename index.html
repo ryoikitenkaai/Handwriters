@@ -10,12 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="preload" href="https://www.elsevier.com/__data/assets/file/0004/1099633/scopus-logo-vector.svg" as="image">
+    <!-- Cool 3D Calendly Integration -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 
 <body>
     <!-- Top Banner -->
     <div class="top-banner">
-        <p>Do you want your paper published? <a href="#contact" class="banner-cta">Consult our experts now!</a></p>
+        <p>Do you want your paper published? <a href="https://wa.me/916205170397?text=Hello%2C%20I%20want%20more%20info" class="banner-cta">Consult our experts now!</a></p>
     </div>
 
     <!-- Header -->
@@ -30,11 +36,19 @@
                     <li><a href="services.html">Services</a></li>
                     <li><a href="services.html#process">Process</a></li>
                     <li><a href="aboutus.html">About</a></li>
-                    <li><a href="contactus.html">Contact</a></li>
+                    <li><a href="mailto:info@handwriterspublication.in">Contact</a></li>
                 </ul>
-            </nav>
-            <a href="#consult" class="cta-button">Consult Our Research Expert</a>
+            </nav>&nbsp;&nbsp;
+            <!-- Desktop-only Book Appointment Button -->
+            <div class="desktop-only">
+              <button class="breathing-btn" onclick="initCalendly()">
+                <span class="pulse-ring"></span>
+                <i class="fas fa-calendar-alt"></i> Book Appointment
+              </button>
+            </div>
         </div>
+        
+
         
         <!-- Mobile Menu Button -->
         <div class="mobile-menu-btn">
@@ -358,48 +372,77 @@
         <div class="container">
             <h2>Ready to Publish Your Research?</h2>
             <p>Our experts will guide you through the entire publication process</p>
-            <a href="#contact" class="btn-primary">Get Started Today</a>
+            <a href="https://wa.me/916205170397?text=Hello%2C%20I%20want%20more%20info" class="btn-primary">Get Started Today</a>
         </div>
     </section>
-    <div class="faq-container">
-        <!-- FAQ 1 -->
-        <div class="faq-card" onclick="toggleFAQ(1)">
-          <div class="faq-header">
-            <span class="icon">✍️</span>
-            <h3>What support do you provide throughout the publication process?</h3>
-            <span class="toggle-icon">+</span>
-          </div>
-          <div class="faq-content">
-            <p>We assist you <strong>end-to-end</strong>—from manuscript writing and journal shortlisting to formatting, submission, communication with journals, revisions, and final publication. You’ll also receive <em>real-time updates</em> at each milestone!</p>
-          </div>
-        </div>
+
+
+
+    <!-- FAQ Section -->
+
+
+    <section class="faq-section">
+      <h2 class="section-title">📌 Frequently Asked Questions</h2>
       
-        <!-- FAQ 2 -->
-        <div class="faq-card" onclick="toggleFAQ(2)">
-          <div class="faq-header">
-            <span class="icon">🎯</span>
-            <h3>Do you guarantee publication in Scopus or WoS journals?</h3>
-            <span class="toggle-icon">+</span>
+      <div class="faq-container">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+              <div class="faq-question">
+                  <h3>What support do you provide throughout the publication process?</h3>
+                  <span class="toggle-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                  <p>We assist you end-to-end—from manuscript writing and journal shortlisting to formatting, submission, communication with journals, revisions, and final publication. You'll also receive updates at each milestone.</p>
+              </div>
           </div>
-          <div class="faq-content">
-            <p>While we <strong>don’t guarantee publication</strong> (final decisions lie with the journal), our tailored strategies boast a <span class="highlight">90–95% success rate</span> in Scopus-indexed journals. We optimize your manuscript and target the <em>right</em> journals!</p>
+          
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+              <div class="faq-question">
+                  <h3>Do you guarantee publication in Scopus or WoS journals? What is your success rate?</h3>
+                  <span class="toggle-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                  <p>While we do not guarantee publication (as the final decision lies with the journal), our consultancy significantly increases acceptance chances through tailored journal selection and manuscript optimization. We currently maintain a success rate of 90–95% in Scopus-indexed journals.</p>
+              </div>
           </div>
-        </div>
-      
-        <!-- FAQ 3 -->
-        <div class="faq-card" onclick="toggleFAQ(3)">
-          <div class="faq-header">
-            <span class="icon">💳</span>
-            <h3>When is the APC (Article Processing Charge) paid?</h3>
-            <span class="toggle-icon">+</span>
+          
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+              <div class="faq-question">
+                  <h3>When is the APC (Article Processing Charge) required to be paid?</h3>
+                  <span class="toggle-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                  <p>APCs are paid only after your paper is accepted by the journal. We notify you once acceptance is confirmed, and the APC is paid directly to the agency.</p>
+              </div>
           </div>
-          <div class="faq-content">
-            <p>APCs are paid <strong>only after acceptance</strong>. We notify you once the journal confirms, and you pay the APC directly to them—no hidden fees!</p>
+          
+          <!-- FAQ Item 4 -->
+          <div class="faq-item">
+              <div class="faq-question">
+                  <h3>Are there any service charges for publication support?</h3>
+                  <span class="toggle-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                  <p>Yes, we charge a one-time consultancy fee for the services you choose—writing, editing, submission, or full support. The charges vary based on complexity, turnaround time, and journal indexing requirements.</p>
+              </div>
           </div>
-        </div>
-      
-        <!-- FAQ 4 & 5 - Add similarly -->
+          
+          <!-- FAQ Item 5 -->
+          <div class="faq-item">
+              <div class="faq-question">
+                  <h3>Can I choose the journal, or do you decide that?</h3>
+                  <span class="toggle-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                  <p>We provide a curated list of journals that match your manuscript's scope and indexing requirements. You always have the final say—we proceed only after your confirmation of the target journal.</p>
+              </div>
+          </div>
       </div>
+  </section>
+      
+        
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -410,17 +453,16 @@
             <div class="footer-col">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#patents">Patents</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="services.html#process"></a></li>
+                    <li><a href="aboutus.html">About</a></li>
+                    <li><a href="https://wa.me/916205170397?text=Hello%2C%20I%20want%20more%20info">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h3>Contact Us</h3>
-                <p><i class="fas fa-envelope"></i> </p>
-                <p><i class="fas fa-phone"></i></p>
+                <p><i class="fas fa-envelope"></i>info@handwriterspublication.in </p>
+                <p><i class="fas fa-phone"></i>+91 62051 70397</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -463,8 +505,8 @@
                 <span class="research-tag small-bubble q2-bubble">Q2</span>
                 <span class="research-tag small-bubble q3-bubble">Q3</span>
                 <span class="research-tag small-bubble q4-bubble">Q4</span>
-            </div>
-            <div class="bubble-cta">Consult Our Expert</div>
+            </div><a href="https://wa.me/916205170397?text=Hello%2C%20I%20want%20more%20info">
+            <div class="bubble-cta" >Consult Our Expert</div></a>
         </div>
         <div class="bubble-trigger" id="bubbleTrigger">
             <img src="https://cdn-icons-png.flaticon.com/512/3663/3663918.png" width="60" alt="Research Help">
@@ -477,5 +519,6 @@
 </div>
     <script src="script.js"></script>
 
+    
 </body>
 </html>

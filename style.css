@@ -3,6 +3,7 @@ body {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
     line-height: 1.6;
+    
     color: #333;
 }
 
@@ -320,7 +321,7 @@ nav ul li a:hover {
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(rgba(28, 49, 66, 0.9), rgba(28, 49, 66, 0.9)), url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background: linear-gradient(rgba(112, 121, 107, 0.9), rgba(28, 49, 66, 0.9)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
     background-size: cover;
     background-position: center;
     color: var(--text-light);
@@ -621,11 +622,13 @@ footer {
   margin-top: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .bubble-cta:hover {
   background: linear-gradient(to right, #2c3e50, #1f2c3b);
   transform: translateY(-2px);
+  text-decoration: none;
 }
 
 /* Responsive */
@@ -719,76 +722,93 @@ footer {
         width: 220px;
         padding: 15px;
     }
+}.faq-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.section-title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
 .faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .faq-card {
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
-    overflow: hidden;
-    border-left: 5px solid #FF6D00; /* Scopus accent color */
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .faq-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(255, 109, 0, 0.2);
-  }
-  
-  .faq-header {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    gap: 15px;
-  }
-  
-  .faq-header h3 {
-    margin: 0;
-    flex: 1;
-    color: #002D3F; /* Elsevier blue */
-  }
-  
-  .icon {
-    font-size: 24px;
-  }
-  
-  .toggle-icon {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .faq-content {
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 20px;
-    transition: max-height 0.3s ease;
-  }
-  
-  .faq-content p {
-    padding-bottom: 20px;
-    line-height: 1.6;
-  }
-  
-  .highlight {
-    color: #E31937; /* Elsevier red */
-    font-weight: bold;
-  }
-  
-  /* Active state */
-  .faq-card.active .faq-content {
-    max-height: 200px;
-  }
-  
-  .faq-card.active .toggle-icon {
-    transform: rotate(45deg);
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.faq-question {
+  background-color: #f8f9fa;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+  background-color: #e9ecef;
+}
+
+.faq-question h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.toggle-icon {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #3498db;
+  transition: transform 0.3s;
+}
+
+.faq-answer {
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer p {
+  margin: 0;
+  padding: 0 1.5rem;
+  color: #34495e;
+  line-height: 1.6;
+}
+
+/* Active state */
+.faq-item.active .faq-question {
+  background-color: #e9ecef;
+}
+
+.faq-item.active .toggle-icon {
+  transform: rotate(45deg);
+}
+
+.faq-item.active .faq-answer {
+  max-height: 300px;
+  padding: 1.2rem 0;
+}
+
   /* Trust Section Styles */
 .trust-section {
     padding: 60px 0;
@@ -1602,4 +1622,258 @@ footer {
   .other-cell:hover {
     background-color: #fff0f0 !important;
   }
+}
+/* Process Section */
+.process {
+  padding: 6rem 0;
+  background-color: var(--light);
+  position: relative;
+}
+
+.process-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  position: relative;
+  margin-top: 4rem;
+}
+
+.process-line {
+  position: absolute;
+  left: 50px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: rgba(0,0,0,0.1);
+  z-index: 1;
+}
+
+.process-line-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(to bottom, var(--secondary), var(--accent));
+  transition: height 0.5s ease;
+}
+
+.process-step {
+  display: flex;
+  gap: 3rem;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s ease;
+}
+
+.process-step:nth-child(even) {
+  flex-direction: row-reverse;
+  text-align: right;
+  margin-left: auto;
+  transform: translateX(50px);
+}
+
+.process-step.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.step-number {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  background-color: var(--primary);
+  color: var(--secondary);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  position: relative;
+  border: 5px solid var(--light);
+}
+
+.step-number::after {
+  content: '';
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border: 1px dashed var(--secondary);
+  border-radius: 50%;
+  animation: pulse 3s infinite ease-in-out;
+}
+
+.step-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  max-width: 500px;
+  position: relative;
+  flex-grow: 1;
+}
+
+.step-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.step-content p {
+  color: var(--text);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .process-step, .process-step:nth-child(even) {
+      flex-direction: column;
+      text-align: center;
+      gap: 1.5rem;
+  }
+  
+  .process-line {
+      left: 50%;
+      transform: translateX(-50%);
+  }
+  
+  .step-content {
+      max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .step-number {
+      width: 80px;
+      height: 80px;
+      font-size: 2rem;
+  }
+  
+  .step-number::after {
+      width: 110px;
+      height: 110px;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+      opacity: 0.7;
+  }
+  50% {
+      transform: scale(1.05);
+      opacity: 0.4;
+  }
+  100% {
+      transform: scale(1);
+      opacity: 0.7;
+  }
+}
+/* Desktop Appointment Button */
+.book-appointment-btn {
+  background: linear-gradient(135deg, #d4af37 0%, #f1c40f 100%);
+  color: #1a2a3a;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  transition: all 0.3s ease;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.book-appointment-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+/* Show only on desktop */
+.desktop-only {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+/* Breathing/Blinking Button */
+.breathing-btn {
+  position: relative;
+  background: linear-gradient(135deg, #d4af37 0%, #f1c40f 100%);
+  color: #1a2a3a;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  z-index: 1;
+  animation: breathing 3s ease-in-out infinite, 
+             blink 1.5s ease infinite;
+}
+
+/* Pulse ring effect */
+.pulse-ring {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid #d4af37;
+  border-radius: 50px;
+  animation: pulse 3s ease-out infinite;
+  opacity: 0;
+  z-index: -1;
+}
+
+/* Breathing animation */
+@keyframes breathing {
+  0% { transform: scale(0.98); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(0.98); }
+}
+
+/* Blinking animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+/* Pulse ring animation */
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  70% { transform: scale(1.1); opacity: 0; }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+
+/* Hover effects */
+.breathing-btn:hover {
+  animation: none;
+  transform: scale(1.05) !important;
+  opacity: 1 !important;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+}
+
+/* Desktop-only restriction */
+@media (max-width: 767px) {
+  .desktop-only { display: none; }
 }

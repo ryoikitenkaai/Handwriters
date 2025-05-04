@@ -128,20 +128,25 @@ document.addEventListener('click', (e) => {
         researchBubble.style.display = 'none';
     }
 });
-function toggleFAQ(index) {
-    const faqCard = document.querySelectorAll('.faq-card')[index - 1];
-    faqCard.classList.toggle('active');
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
     
-    const icon = faqCard.querySelector('.toggle-icon');
-    if (faqCard.classList.contains('active')) {
-      icon.textContent = '−';
-    } else {
-      icon.textContent = '+';
-    }
-  }
-  document.querySelectorAll('.badge').forEach((badge, index) => {
-    badge.style.transitionDelay = `${index * 0.1}s`;
-  });
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            item.classList.toggle('active');
+        });
+    });
+});
   // Detect SVG support and add fallback class
 document.addEventListener("DOMContentLoaded", function() {
     if (!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Shape", "1.1")) {
@@ -212,3 +217,34 @@ window.addEventListener('scroll', function() {
         header.style.padding = '1rem 0';
         header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.2)';
     }});
+
+    
+    
+    
+    // Initialize Calendly
+    function initCalendly() {
+      Calendly.initPopupWidget({
+        url: 'https://calendly.com/handwriterspublication',
+        text: 'Book Appointment',
+        color: '#d4af37',
+        textColor: '#1a2a3a',
+        branding: false
+      });
+      return false;
+    }
+    
+    // Mobile detection
+    function isMobile() {
+      return window.innerWidth <= 767;
+    }
+    
+    // Event listeners
+    document.getElementById('book-now-btn').addEventListener('click', initCalendly);
+    document.getElementById('mobile-fab').addEventListener('click', initCalendly);
+    
+    // Adjust for mobile view
+    window.addEventListener('resize', function() {
+      const fab = document.getElementById('mobile-fab');
+      fab.style.display = isMobile() ? 'flex' : 'none';
+    });
+    
