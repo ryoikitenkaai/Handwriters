@@ -54,7 +54,6 @@ body {
 /* Thinner Header */
 header {
     background-color: var(--header-blue);
-    padding: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -69,6 +68,7 @@ header {
     transition: height 0.3s ease;
     margin-left: 25px;
 }
+
 
 .header-content {
     display: flex;
@@ -1386,5 +1386,220 @@ footer {
   
   .testimonial-text {
       font-size: 0.9rem;
+  }
+}
+/* Golden Botanical Comparison Table Styles */
+.comparison-section {
+  padding: 40px 0;
+  background-color: #f8f7f2;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.title-wrapper {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-title1 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+  padding: 0 20px;
+}
+
+.gold-text {
+  color: #c5a059;
+  font-weight: 600;
+}
+
+.title-decoration {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c5a059, transparent);
+  width: 60%;
+  margin: 0 auto;
+}
+
+.botanical-frame {
+  position: relative;
+  padding: 20px;
+}
+
+.gold-vine {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23c5a059" d="M30,10 Q50,30 70,10 Q90,30 70,50 Q50,70 30,50 Q10,30 30,10" opacity="0.8"/></svg>');
+  background-repeat: no-repeat;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.top-left { top: 0; left: 0; transform: rotate(-30deg); }
+.top-right { top: 0; right: 0; transform: rotate(30deg); }
+.bottom-left { bottom: 0; left: 0; transform: rotate(30deg) scaleY(-1); }
+.bottom-right { bottom: 0; right: 0; transform: rotate(-30deg) scaleY(-1); }
+
+.comparison-table {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  background: white;
+  position: relative;
+  z-index: 2;
+  font-size: 0.9rem;
+}
+
+.comparison-header {
+  display: contents;
+}
+
+.header-cell {
+  padding: 14px 15px;
+  background-color: #2c3e50;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.service-header {
+  background-color: #3a516b;
+}
+
+.comparison-row {
+  display: contents;
+}
+
+.row-cell {
+  padding: 12px 15px;
+  background-color: white;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+}
+
+.service-cell {
+  background-color: #f8f7f2;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.hw-cell {
+  color: #1a2634;
+}
+
+.other-cell {
+  color: #5c6b7a;
+}
+
+.icon {
+  font-weight: bold;
+  margin-right: 8px;
+  min-width: 18px;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.hw-cell .icon {
+  color: #4CAF50;
+}
+
+.other-cell .icon {
+  color: #E91E63;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .comparison-section {
+    padding: 30px 10px;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .title-decoration {
+    width: 80%;
+  }
+  
+  .botanical-frame {
+    padding: 15px 0;
+  }
+  
+  .gold-vine {
+    width: 50px;
+    height: 50px;
+    opacity: 0.5;
+  }
+  
+  .comparison-table {
+    display: block;
+    font-size: 0.85rem;
+  }
+  
+  .comparison-header {
+    display: none;
+  }
+  
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .service-cell {
+    grid-column: span 2;
+    padding: 10px 15px;
+    background-color: #3a516b;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .hw-cell, .other-cell {
+    padding: 10px 15px 10px 35px;
+    position: relative;
+  }
+  
+  .icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 0;
+    font-size: 1.1em;
+  }
+  
+  .hw-cell {
+    border-right: 1px solid #f0f0f0;
+  }
+}
+
+/* Hover Effects */
+@media (hover: hover) {
+  .comparison-row:hover .row-cell:not(.service-cell) {
+    background-color: #f9f9f9;
+  }
+  
+  .hw-cell:hover {
+    background-color: #f0f9f0 !important;
+  }
+  
+  .other-cell:hover {
+    background-color: #fff0f0 !important;
   }
 }
