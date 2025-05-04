@@ -200,3 +200,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize slider on load
     updateSlider();
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const processSteps = document.querySelectorAll('.process-step');
+    const processLine = document.getElementById('processLine');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                
+                // Calculate progress line height
+                const activeSteps = document.querySelectorAll('.process-step.active');
+                const progress = (activeSteps.length / processSteps.length) * 100;
+                processLine.style.height = `${progress}%`;
+            }
+        });
+    }, {
+        threshold: 0.3,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    processSteps.forEach(step => {
+        observer.observe(step);
+    });
+});
