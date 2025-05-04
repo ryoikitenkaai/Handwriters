@@ -22,8 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const statNumbers = document.querySelectorAll('.stat-number');
         
         statNumbers.forEach(number => {
-            const target = +number.innerText.replace('+', '');
-            const suffix = number.innerText.includes('+') ? '+' : '';
+            const target = parseInt(number.innerText.replace(/[+%]/g, ''));
+            const suffix = number.innerText.match(/[+%]/)?.[0] || '';
+
             const duration = 2000;
             const startTime = performance.now();
             
