@@ -200,27 +200,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize slider on load
     updateSlider();
 });
-document.addEventListener('DOMContentLoaded', function() {
-    const processSteps = document.querySelectorAll('.process-step');
-    const processLine = document.getElementById('processLine');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                
-                // Calculate progress line height
-                const activeSteps = document.querySelectorAll('.process-step.active');
-                const progress = (activeSteps.length / processSteps.length) * 100;
-                processLine.style.height = `${progress}%`;
-            }
-        });
-    }, {
-        threshold: 0.3,
-        rootMargin: '0px 0px -100px 0px'
-    });
-    
-    processSteps.forEach(step => {
-        observer.observe(step);
-    });
-});
+
+
+// Header scroll effect
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('header');
+    if (window.scrollY > 50) {
+        header.style.padding = '0.1rem 0';
+        header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    } else {
+        header.style.padding = '1rem 0';
+        header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.2)';
+    }});
