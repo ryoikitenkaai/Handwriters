@@ -218,7 +218,7 @@
         
         /* Services Section */
         .services {
-            padding: 6rem 0;
+            padding: 5rem 0;
             background-color: white;
             position: relative;
             overflow: hidden;
@@ -237,7 +237,7 @@
         .section-title {
             text-align: center;
             font-size: 2.8rem;
-            margin-bottom: 5rem;
+            margin-bottom: 3rem;
             color: var(--primary);
             position: relative;
         }
@@ -257,10 +257,9 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
         
         .service-card {
@@ -272,8 +271,6 @@
             opacity: 0;
             transform: translateY(50px) scale(0.95);
             border: 1px solid rgba(0,0,0,0.05);
-            width: 100%;
-            max-width: 500px;
         }
         
         .service-card:nth-child(1) { animation: cardAppear 1s ease 0.2s forwards; }
@@ -364,7 +361,7 @@
         .process-steps {
             display: flex;
             flex-direction: column;
-            gap: 4rem;
+            gap: 3rem;
             position: relative;
             margin-top: 4rem;
         }
@@ -777,9 +774,9 @@
     
     <!-- Hero Section -->
     <section class="hero">
-        <div class="decorative-text text-1">ACADEMIC</div>
-        <div class="decorative-text text-2">PUBLISH</div>
-        <div class="decorative-text text-3">RESEARCH</div>
+        <div class="decorative-text text-1">Hand</div>
+        <div class="decorative-text text-2">Writers</div>
+        <div class="decorative-text text-3">Publication</div>
         
         <div class="hero-content">
             <h1>Elevate Your Academic Publications</h1>
@@ -790,9 +787,9 @@
     
     <!-- Services Section -->
     <section class="services" id="services">
+        <h2 class="section-title">Our Specialized Services</h2>
         <div class="services-container">
-            <h2 class="section-title">Our Specialized Services</h2>
-            <br>
+            
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-file-alt"></i>
@@ -804,6 +801,7 @@
                         <li>Original research, review, and technical papers</li>
                         <li>Strict compliance with journal guidelines</li>
                         <li>Structural optimization for readability</li>
+                        <li>Case study and technical paper assistance</li>
                     </ul>
                 </div>
             </div>
@@ -819,6 +817,7 @@
                         <li>Grammar, syntax, and flow correction</li>
                         <li>Plagiarism reduction strategies</li>
                         <li>Technical terminology verification</li>
+                        <li>Paraphrasing support</li>
                     </ul>
                 </div>
             </div>
@@ -834,6 +833,7 @@
                         <li>Personalized journal recommendations</li>
                         <li>Scopus, WoS, PubMed index targeting</li>
                         <li>Submission system navigation</li>
+                        <li>Impact factor consideration</li>
                     </ul>
                 </div>
             </div>
@@ -849,6 +849,7 @@
                         <li>Ethical compliance and DOI management</li>
                         <li>Open-access policy navigation</li>
                         <li>Indexing optimization</li>
+                        <li>Process management support</li>
                     </ul>
                 </div>
             </div>
@@ -864,6 +865,7 @@
                         <li>Literature review assistance</li>
                         <li>Thesis-to-article conversion</li>
                         <li>PhD and postgraduate support</li>
+                        <li>Ongoing research mentorship</li>
                     </ul>
                 </div>
             </div>
@@ -871,14 +873,15 @@
     </section>
     
     <!-- Logo Showcase -->
-    <section class="logo-showcase" >
+    <section class="logo-showcase">
         <img src="logon.png.png" alt="HandWriters Official Logo" style="background-color: #333333; border-radius: 120%;">
     </section>
     
     <!-- Process Section -->
     <section class="process" id="process">
         <div class="process-container">
-            <h2 class="section-title">Our Publication Process</h2>
+            <h2 class="section-title">Our Publication Workflow</h2>
+            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.2rem;">A Step-by-Step Journey</p>
             
             <div class="process-steps">
                 <div class="process-line">
@@ -888,64 +891,56 @@
                 <div class="process-step">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <h3>Brain Storming Session</h3>
-                        <p>Collaborative ideation to refine your research focus and develop a strategic publication roadmap tailored to your academic goals.</p>
+                        <h3>Provide Indexing Requirements</h3>
+                        <p>Share your indexing requirements to ensure the paper aligns with your academic goals.</p>
                     </div>
                 </div>
                 
                 <div class="process-step">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <h3>Essay Analysis Call</h3>
-                        <p>In-depth evaluation of your existing work with actionable feedback to strengthen arguments and improve academic rigor.</p>
+                        <h3>Share the Scope of the Paper</h3>
+                        <p>Provide details about the subject area, focus, and objectives to help us understand its domain.</p>
                     </div>
                 </div>
                 
                 <div class="process-step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h3>Initial Counselling</h3>
-                        <p>Personalized guidance session to align your research objectives with optimal publication opportunities and career aspirations.</p>
+                        <h3>Discuss the Timeline</h3>
+                        <p>We curate a list of journals matching your paper's field, ensuring relevance and high acceptance.</p>
                     </div>
                 </div>
                 
                 <div class="process-step">
                     <div class="step-number">4</div>
                     <div class="step-content">
-                        <h3>Crafting Your Resume</h3>
-                        <p>Academic CV optimization highlighting your research achievements, publications, and expertise for grant applications and academic positions.</p>
+                        <h3>Verify and Finalize the Journal</h3>
+                        <p>Review and finalize the journal based on authenticity, indexing, and other factors.</p>
                     </div>
                 </div>
                 
                 <div class="process-step">
                     <div class="step-number">5</div>
                     <div class="step-content">
-                        <h3>Perfecting the LOR</h3>
-                        <p>Development of compelling Letters of Recommendation that showcase your academic strengths and research potential.</p>
+                        <h3>Receive Acceptance Notification</h3>
+                        <p>Once accepted, pay the APC to proceed with the publication.</p>
                     </div>
                 </div>
                 
                 <div class="process-step">
                     <div class="step-number">6</div>
                     <div class="step-content">
-                        <h3>Unlimited Edits</h3>
-                        <p>Comprehensive revision cycles ensuring your manuscript meets the highest standards of academic excellence before submission.</p>
+                        <h3>Submit the Final Revision</h3>
+                        <p>Submit the revised version based on feedback from reviewers and editors.</p>
                     </div>
                 </div>
                 
                 <div class="process-step">
                     <div class="step-number">7</div>
                     <div class="step-content">
-                        <h3>Interview Preparation</h3>
-                        <p>Mock interviews and coaching sessions to prepare you for academic presentations, thesis defenses, and research position interviews.</p>
-                    </div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">8</div>
-                    <div class="step-content">
-                        <h3>MIM All in One Service Recap</h3>
-                        <p>Final review and consolidation of all prepared materials, ensuring a polished and publication-ready portfolio.</p>
+                        <h3>Get Your Published Article URL</h3>
+                        <p>Receive the URL of the published article for sharing and record-keeping.</p>
                     </div>
                 </div>
             </div>
