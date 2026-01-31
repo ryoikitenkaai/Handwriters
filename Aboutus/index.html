@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="lo.png">
+    <title>About HandWriters Publication</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --header-blue: #1f2c3b;
+            --body-cream: #f8f4e9;
+            --accent-gold: #b89f72;
+            --accent-gold-light: #d4c4a3;
+            --text-dark: #333333;
+            --text-light: #6d6d6d;
+            --paper-texture: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--body-cream);
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-image: var(--paper-texture);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: var(--header-blue);
+        }
+        
+        /* Decorative elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .floating-element.pen {
+            font-size: 2rem;
+            color: var(--accent-gold);
+            transform: rotate(-15deg);
+        }
+        
+        .floating-element.quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--header-blue);
+            font-style: italic;
+            writing-mode: vertical-rl;
+        }
+        
+        .back-home {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 1000;
+            background: rgba(31, 44, 59, 0.8);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 400;
+            letter-spacing: 1px;
+            font-size: 14px;
+            text-transform: uppercase;
+            border: 1px solid var(--accent-gold);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .back-home:hover {
+            background: var(--header-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .consult-btn {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: var(--accent-gold);
+            color: var(--header-blue);
+            padding: 12px 25px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .consult-btn:hover {
+            background: #c9b386;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            background: var(--header-blue);
+            color: white;
+            text-align: center;
+            padding: 180px 20px 150px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1373&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .logo-container {
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            height: 100px;
+            width: auto;
+            filter: brightness(0) saturate(100%) invert(76%) sepia(12%) saturate(992%) hue-rotate(358deg) brightness(90%) contrast(86%);
+        }
+        
+        .company-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .company-name::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-gold);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            font-style: italic;
+        }
+        
+        .divider {
+            width: 100px;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 30px auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section {
+            margin-bottom: 100px;
+            position: relative;
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-gold);
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+        }
+        
+        .mission-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .mission-card {
+            background: white;
+            padding: 40px 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--accent-gold);
+            background-image: var(--paper-texture);
+        }
+        
+        .mission-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--accent-gold-light);
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .mission-icon {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--accent-gold);
+        }
+        
+        .mission-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .mission-card p {
+            color: var(--text-light);
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 50px 0;
+        }
+        
+        .grid-item {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .grid-item::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(31, 44, 59, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .grid-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .grid-item:hover::after {
+            background: rgba(31, 44, 59, 0.1);
+        }
+        
+        .who-we-help {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .help-card {
+            background: white;
+            padding: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 3px solid var(--accent-gold);
+            background-image: var(--paper-texture);
+            position: relative;
+        }
+        
+        .help-card::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            border-right: 2px solid var(--accent-gold-light);
+            border-top: 2px solid var(--accent-gold-light);
+            opacity: 0.5;
+        }
+        
+        .help-card::after {
+            content: "";
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            border-left: 2px solid var(--accent-gold-light);
+            border-bottom: 2px solid var(--accent-gold-light);
+            opacity: 0.5;
+        }
+        
+        .help-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .help-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--header-blue);
+        }
+        
+        .help-card p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+        
+        .journals {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        .journal-logo {
+            height: 40px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            filter: brightness(0) saturate(100%) invert(16%) sepia(12%) saturate(1611%) hue-rotate(169deg) brightness(93%) contrast(89%);
+        }
+        
+        .journal-logo:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            background-image: var(--paper-texture);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-gold);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .benefits-list {
+            list-style: none;
+            margin: 40px 0;
+        }
+        
+        .benefits-list li {
+            padding: 25px 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            background: white;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefits-list li::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--accent-gold);
+        }
+        
+        .benefits-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .benefits-list li:hover {
+            transform: translateX(10px);
+        }
+        
+        .benefit-icon {
+            margin-right: 20px;
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        footer {
+            background: var(--header-blue);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-wood.png');
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+        }
+        
+        .footer-text {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--accent-gold);
+            transform: translateY(-3px);
+        }
+        
+        /* Journal text list */
+        .journal-text-list {
+            background: white;
+            padding: 40px;
+            margin-top: 40px;
+            border-left: 4px solid var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            position: relative;
+            background-image: var(--paper-texture);
+        }
+        
+        .journal-text-list::after {
+            content: "";
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23b89f72"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>');
+            background-size: contain;
+            opacity: 0.1;
+        }
+        
+        .journal-text-list h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--header-blue);
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+        
+        .journal-text-list ul {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .journal-text-list li {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .journal-text-list li::before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .journal-text-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Elegant quote */
+        .elegant-quote {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .elegant-quote::before {
+            content: "“";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--accent-gold-light);
+            line-height: 1;
+            opacity: 0.3;
+        }
+        
+        .elegant-quote::after {
+            content: "“";
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--accent-gold-light);
+            line-height: 1;
+            opacity: 0.3;
+            transform: rotate(180deg);
+        }
+        
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--header-blue);
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-author {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delayed-1 { animation-delay: 0.2s; }
+        .delayed-2 { animation-delay: 0.4s; }
+        .delayed-3 { animation-delay: 0.6s; }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .image-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 2.8rem;
+            }
+            
+            header {
+                padding: 150px 20px 100px;
+            }
+            
+            .back-home, .consult-btn {
+                top: 20px;
+                left: 20px;
+                right: 20px;
+                text-align: center;
+            }
+            
+            .consult-btn {
+                top: 70px;
+            }
+            
+            .mission-cards, .who-we-help {
+                grid-template-columns: 1fr;
+            }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .journal-text-list ul {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating decorative elements -->
+    <div class="floating-elements">
+        <div class="floating-element pen floating" style="top: 15%; left: 5%;">✒️</div>
+        <div class="floating-element quote floating" style="top: 25%; right: 8%;">"Publish or Perish"</div>
+        <div class="floating-element pen floating" style="top: 60%; left: 10%;">📝</div>
+        <div class="floating-element quote floating" style="top: 70%; right: 5%;">"Knowledge Shared"</div>
+        <div class="floating-element pen floating" style="top: 85%; right: 15%;">🖋️</div>
+    </div>
+    
+    <a href="/" class="back-home">Back to Home</a>
+    <a href="https://wa.me/916205170397?text=Hello%2C%20I%20want%20more%20info" class="consult-btn">Consult Our Expert</a>
+    
+    <header>
+        <div class="header-image"></div>
+        <div class="header-content">
+            <!-- Logo placeholder - replace with your actual logo -->
+            <div class="logo-container fade-in">
+                <img src="logo.png" alt="HandWriters Logo" class="logo">
+            </div>
+            <div class="company-name fade-in">HandWriters Publication</div>
+            <!-- <div class="divider fade-in delayed-1"></div> -->
+            <p class="tagline fade-in delayed-2">Elevating academic research through expert publication support in globally recognized journals</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="section fade-in">
+            <h2>Who We Are</h2>
+            <p>HandWriters Publication is a distinguished academic support service dedicated to assisting researchers in publishing their work in prestigious, globally recognized journals. Our network of partner agencies and academic experts serves as a bridge between innovative research and reputable publications.</p>
+            
+            <div class="image-grid">
+                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+            </div>
+            
+            <div class="elegant-quote fade-in delayed-1">
+                <p class="quote-text">"The true alchemists do not change lead into gold; they change the world into words."</p>
+                <p class="quote-author">— William H. Gass</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card fade-in delayed-1">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Publications</div>
+                </div>
+                <div class="stat-card fade-in delayed-2">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Indexing Available</div>
+                </div>
+                <div class="stat-card fade-in delayed-1">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Experts</div>
+                </div>
+                <div class="stat-card fade-in delayed-2">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="fade-in">Our Mission</h2>
+            <p class="fade-in delayed-1">To provide researchers with ethical, expert-driven publication support that meets the highest academic standards while remaining accessible.</p>
+            
+            <div class="mission-cards">
+                <div class="mission-card fade-in">
+                    <div class="mission-icon"><i class="fas fa-pen-fancy"></i></div>
+                    <h3>Academic Excellence</h3>
+                    <p>We maintain rigorous standards to ensure your research meets international publication criteria and contributes meaningfully to your field.</p>
+                </div>
+                <div class="mission-card fade-in delayed-1">
+                    <div class="mission-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Global Reach</h3>
+                    <p>Our partnerships with indexed journals worldwide provide diverse publication opportunities tailored to your research.</p>
+                </div>
+                <div class="mission-card fade-in delayed-2">
+                    <div class="mission-icon"><i class="fas fa-hands-helping"></i></div>
+                    <h3>Personalized Support</h3>
+                    <p>From initial submission to final publication, we offer guidance at every step of your academic journey.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="fade-in">What We Do</h2>
+            <p class="fade-in delayed-1">We provide comprehensive support throughout the entire publication process, ensuring your research achieves the recognition it deserves in top-tier journals.</p>
+            
+            <div class="journal-text-list fade-in delayed-2">
+                <h3>We specialize in publications indexed by:</h3>
+                <ul>
+                    <li>Scopus (Elsevier)</li>
+                    <li>Web of Science</li>
+                    <li>PubMed/PMC</li>
+                    <li>SCI/SSCI indexed journals</li>
+                    <li>DOAJ listed open access journals</li>
+                    <li>IEEE Xplore</li>
+                    <li>Springer Nature</li>
+                    <li>Taylor & Francis</li>
+                </ul>
+            </div>
+            
+            <div class="elegant-quote fade-in">
+                <p class="quote-text">"Research is creating new knowledge. Publication is giving it life."</p>
+                <p class="quote-author">— Our Philosophy</p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="fade-in">Who We Help</h2>
+            <p class="fade-in delayed-1">Our services are tailored to meet the needs of researchers at all stages of their academic and professional careers.</p>
+            
+            <div class="who-we-help">
+                <div class="help-card fade-in">
+                    <h3>Early-career Researchers</h3>
+                    <p>Guidance through your first publications with mentorship from experienced academics.</p>
+                </div>
+                <div class="help-card fade-in delayed-1">
+                    <h3>Doctoral Candidates</h3>
+                    <p>Comprehensive support for thesis publication and journal submissions.</p>
+                </div>
+                <div class="help-card fade-in delayed-2">
+                    <h3>Academic Faculty</h3>
+                    <p>High-impact publication strategies for career advancement and tenure.</p>
+                </div>
+                <div class="help-card fade-in">
+                    <h3>Research Professionals</h3>
+                    <p>Industry research publication in specialized, high-impact journals.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="fade-in">Why Choose Us?</h2>
+            
+            <ul class="benefits-list">
+                <li class="fade-in">
+                    <span class="benefit-icon"><i class="fas fa-user-graduate"></i></span>
+                    <div>
+                        <h3>Expert Academic Team</h3>
+                        <p>Our editors and consultants hold advanced degrees and have extensive publication experience</p>
+                    </div>
+                </li>
+                <li class="fade-in delayed-1">
+                    <span class="benefit-icon"><i class="fas fa-handshake"></i></span>
+                    <div>
+                        <h3>Journal Partnerships</h3>
+                        <p>Established relationships with authorized agencies for efficient processing</p>
+                    </div>
+                </li>
+                <li class="fade-in delayed-2">
+                    <span class="benefit-icon"><i class="fas fa-clipboard-check"></i></span>
+                    <div>
+                        <h3>Transparent Process</h3>
+                        <p>Clear communication and real-time updates throughout your publication journey</p>
+                    </div>
+                </li>
+                <li class="fade-in">
+                    <span class="benefit-icon"><i class="fas fa-trophy"></i></span>
+                    <div>
+                        <h3>Proven Success</h3>
+                        <p>Hundreds of researchers have achieved publication through our support</p>
+                    </div>
+                </li>
+            </ul>
+            
+            
+        </section>
+    </div>
+    
+    <footer class="fade-in">
+        <div class="footer-content">
+            <div class="footer-logo">HandWriters</div>
+            <p class="footer-text">Empowering researchers to share their work with the global academic community.</p>
+            
+            <div class="social-links">
+                
+                <a href="https://www.instagram.com/handwriterspublication/" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61573253404960" class="social-link"><i class="fab fa-facebook"></i></a>
+                
+            </div>
+            
+            <p>© 2026 HandWriters Publication. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Add more floating elements dynamically
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingContainer = document.querySelector('.floating-elements');
+            const quotes = [
+                '"The pen is mightier than the sword"',
+                '"Publish with purpose"',
+                '"Knowledge grows when shared"',
+                '"Academic excellence"',
+                '"Research without publication is silence"'
+            ];
+            const icons = ['✒️', '📝', '🖋️', '📚', '🔬', '📖', '📑'];
+            
+            // Add more floating elements
+            for (let i = 0; i < 5; i++) {
+                const top = Math.random() * 90;
+                const left = Math.random() * 90;
+                const delay = Math.random() * 5;
+                
+                const element = document.createElement('div');
+                element.className = `floating-element ${Math.random() > 0.5 ? 'pen' : 'quote'} floating`;
+                element.style.top = `${top}%`;
+                element.style.left = `${left}%`;
+                element.style.animationDelay = `${delay}s`;
+                
+                if (element.classList.contains('quote')) {
+                    element.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+                    element.style.fontSize = `${0.8 + Math.random() * 0.7}rem`;
+                    element.style.opacity = 0.1 + Math.random() * 0.2;
+                } else {
+                    element.textContent = icons[Math.floor(Math.random() * icons.length)];
+                    element.style.fontSize = `${1.5 + Math.random() * 2}rem`;
+                    element.style.opacity = 0.1 + Math.random() * 0.2;
+                }
+                
+                floatingContainer.appendChild(element);
+            }
+            
+            // Animate stats counting
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                const suffix = stat.textContent.match(/[+]/g);
+                let count = 0;
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                
+                const updateCount = () => {
+                    count += increment;
+                    if (count < target) {
+                        stat.textContent = Math.floor(count) + (suffix ? suffix[0] : '');
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        stat.textContent = target + (suffix ? suffix[0] : '');
+                    }
+                };
+                
+                // Start counting when element is in view
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        updateCount();
+                        observer.unobserve(stat);
+                    }
+                });
+                
+                observer.observe(stat);
+            });
+        });
+    </script>
+</body>
+</html>
