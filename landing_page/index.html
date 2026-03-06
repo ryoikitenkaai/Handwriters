@@ -527,7 +527,7 @@
         <div class="form-container">
 
             <h2 class="form-title">Submit Your Research</h2>
-            <form action="submit_form.php" method="POST" id="publicationForm">
+            <form action="/api/receive_lead.php" method="POST" id="publicationForm">
                 <div class="form-group">
                     <label for="name" class="required">Full Name</label>
                     <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
@@ -669,31 +669,46 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             submitBtn.disabled = true;
             
-            // Create a FormData object and send via fetch
+            // ── CRM API endpoint ──────────────────────────────────────────
+            // Replace with your actual CRM domain (no trailing slash)
+            const CRM_URL = '';  // root-relative: /api/receive_lead.php
+            const API_KEY = 'hwp_lp_8f3a2b9e1c7d4f06a5e0b2c8d3f1e7a9';
+            // ─────────────────────────────────────────────────────────────
+
             const formData = new FormData(this);
-            
-            fetch('submit_form.php', {
+
+            fetch(CRM_URL + '/api/receive_lead.php', {
                 method: 'POST',
+                headers: { 'X-API-Key': API_KEY },
                 body: formData
             })
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok && response.status !== 422 && response.status !== 429) {
+                    throw new Error('Server error (' + response.status + '). Please try again.');
+                }
+                return response.json();
+            })
             .then(data => {
-                // Show success message
-                alert('Thank you for your submission! We will contact you shortly.');
-                
-                // Reset form
-                this.reset();
-                document.getElementById('wordCount').textContent = '0';
-                
-                // Reset indexing selection
-                document.querySelectorAll('input[name="indexing"]').forEach(radio => {
-                    radio.checked = false;
-                    radio.parentElement.classList.remove('selected');
-                });
+                if (data.success) {
+                    // Show success message
+                    alert('Thank you for your submission! We will contact you shortly.');
+
+                    // Reset form
+                    this.reset();
+                    document.getElementById('wordCount').textContent = '0';
+
+                    // Reset indexing selection
+                    document.querySelectorAll('input[name="indexing"]').forEach(radio => {
+                        radio.checked = false;
+                        radio.parentElement.classList.remove('selected');
+                    });
+                } else {
+                    alert('Submission failed: ' + (data.message || 'Unknown error. Please try again.'));
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('There was an error submitting your form. Please try again.');
+                alert('There was an error submitting your form. Please check your connection and try again.');
             })
             .finally(() => {
                 submitBtn.innerHTML = originalText;
