@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block private/backend paths from indexing
+Disallow: /crm/
+Disallow: /app/
+Disallow: /api/
+Disallow: /pages/
+Disallow: /landing_page/submit_form.php
+
+Sitemap: https://handwriterspublication.com/sitemap.xml
