@@ -129,23 +129,71 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ── Contact Form ─────────────────────────────────────────────
+  // ── Contact Form — CRM Submission ──────────────────────────────
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    // Indexing radio pill selection styling
+    contactForm.querySelectorAll('input[name="indexing"]').forEach(radio => {
+      radio.closest('label').addEventListener('click', function() {
+        contactForm.querySelectorAll('input[name="indexing"]').forEach(r => {
+          r.closest('label').style.background = '';
+          r.closest('label').style.color = '';
+          r.closest('label').style.borderColor = '';
+        });
+        this.style.background = 'var(--gold)';
+        this.style.color = '#fff';
+        this.style.borderColor = 'var(--gold)';
+      });
+    });
+
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const btn = contactForm.querySelector('.form-submit-btn');
-      btn.textContent = 'Sending…';
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
       btn.disabled = true;
 
-      // Simulate send (replace with real endpoint/EmailJS)
-      setTimeout(() => {
-        btn.textContent = '✓ Message Sent';
-        btn.style.background = '#22c55e';
-        const success = document.getElementById('formSuccess');
-        if (success) success.style.display = 'block';
-        contactForm.reset();
-      }, 1800);
+      const CRM_URL = 'https://crm.handwriterspublication.com';
+      const API_KEY = 'hwp_lp_8f3a2b9e1c7d4f06a5e0b2c8d3f1e7a9';
+
+      const formData = new FormData(contactForm);
+
+      fetch(CRM_URL + '/api/receive_lead.php', {
+        method: 'POST',
+        headers: { 'X-API-Key': API_KEY },
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok && response.status !== 422 && response.status !== 429) {
+          throw new Error('Server error (' + response.status + '). Please try again.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
+          btn.innerHTML = '✓ Submitted Successfully';
+          btn.style.background = '#22c55e';
+          const success = document.getElementById('formSuccess');
+          if (success) success.style.display = 'block';
+          contactForm.reset();
+          // Reset indexing pill styles
+          contactForm.querySelectorAll('input[name="indexing"]').forEach(r => {
+            r.closest('label').style.background = '';
+            r.closest('label').style.color = '';
+            r.closest('label').style.borderColor = '';
+          });
+        } else {
+          alert('Submission failed: ' + (data.message || 'Unknown error. Please try again.'));
+          btn.innerHTML = originalHTML;
+          btn.disabled = false;
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error submitting your form. Please check your connection and try again.');
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+      });
     });
   }
 

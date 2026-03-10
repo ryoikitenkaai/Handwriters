@@ -148,7 +148,7 @@ Our success is measured by your publication!`,
 
 💬 **WhatsApp** — <a href="https://wa.me/916205170397" target="_blank">WhatsApp us anytime</a> (fastest response!)
 
-📧 **Email** — <a href="mailto:info@handwriterspublication.in">info@handwriterspublication.in</a>
+📧 **Email** — <a href="mailto:info@handwriterspublication.com">info@handwriterspublication.com</a>
 
 📤 **Submit your paper** — <a href="mailto:submissionwritingservices@outlook.com">submissionwritingservices@outlook.com</a>
 

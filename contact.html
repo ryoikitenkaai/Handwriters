@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us — HandWriters Publication</title>
   <meta name="description" content="Get in touch with HandWriters Publication. Expert research publication consultancy — reach us via WhatsApp, email or our contact form.">
-  <link rel="icon" type="image/png" href="../lo.png">
+  <link rel="icon" type="image/png" href="lo.png">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="chatbot.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -17,8 +17,7 @@
 <header class="site-header always-light" id="header">
   <div class="header-inner">
     <a href="index.html" class="logo-wrap">
-      <div class="logo-icon">📖</div>
-      <div class="logo-text-wrap"><span class="logo-name">HandWriters</span><span class="logo-tagline">Publication &amp; Research</span></div>
+      <img src="logo.png" alt="HandWriters Publication Logo" class="logo-img" style="height:44px;width:auto;">
     </a>
     <nav class="main-nav">
       <a href="index.html">Home</a>
@@ -61,7 +60,7 @@
         <div class="contact-details">
           <div class="contact-detail-item">
             <div class="contact-detail-icon">📧</div>
-            <div class="contact-detail-text"><h4>General Enquiries</h4><p><a href="mailto:info@handwriterspublication.in">info@handwriterspublication.in</a></p></div>
+            <div class="contact-detail-text"><h4>General Enquiries</h4><p><a href="mailto:info@handwriterspublication.com">info@handwriterspublication.com</a></p></div>
           </div>
           <div class="contact-detail-item">
             <div class="contact-detail-icon">📤</div>
@@ -87,7 +86,7 @@
             <a href="https://www.facebook.com/profile.php?id=61573253404960" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/handwriterspublication/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
             <a href="https://wa.me/916205170397" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:info@handwriterspublication.in" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="mailto:info@handwriterspublication.com" class="social-link"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
 
@@ -102,30 +101,24 @@
       <div class="contact-form-wrap fade-in fade-in-delay-2">
         <h3>Send Us a Message</h3>
         <p>Fill in the form and we'll get back with a tailored publication plan.</p>
-        <form id="contactForm" novalidate>
-          <div class="form-row">
-            <div class="form-group"><label for="firstName">First Name</label><input type="text" id="firstName" placeholder="Dr. John" required></div>
-            <div class="form-group"><label for="lastName">Last Name</label><input type="text" id="lastName" placeholder="Smith" required></div>
-          </div>
-          <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="your@email.com" required></div>
-          <div class="form-group"><label for="phone">Phone / WhatsApp (optional)</label><input type="tel" id="phone" placeholder="+91 00000 00000"></div>
+        <form id="contactForm" action="https://crm.handwriterspublication.com/api/receive_lead.php" method="POST" novalidate>
+          <div class="form-group"><label for="name">Full Name <span style="color:var(--gold)">*</span></label><input type="text" id="name" name="name" placeholder="Enter your full name" required></div>
+          <div class="form-group"><label for="email">Email Address <span style="color:var(--gold)">*</span></label><input type="email" id="email" name="email" placeholder="Enter your email address" required></div>
+          <div class="form-group"><label for="whatsapp">WhatsApp Number <span style="color:var(--gold)">*</span></label><input type="tel" id="whatsapp" name="whatsapp" placeholder="Enter your 10-digit WhatsApp number" required></div>
+          <div class="form-group"><label for="subject">Subject Area <span style="color:var(--gold)">*</span></label><input type="text" id="subject" name="subject" placeholder="Enter your subject area" required></div>
           <div class="form-group">
-            <label for="service">Service Interested In</label>
-            <select id="service">
-              <option value="" disabled selected>Select a service…</option>
-              <option>Manuscript Writing &amp; Structuring</option>
-              <option>Editing &amp; Proofreading</option>
-              <option>Journal Selection &amp; Submission</option>
-              <option>Publication Consultancy</option>
-              <option>Research Guidance</option>
-              <option>Patent Filing</option>
-              <option>Other / Not Sure Yet</option>
-            </select>
+            <label>Indexing Preferences <span style="color:var(--gold)">*</span></label>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+              <label style="display:flex;align-items:center;background:var(--white);padding:8px 16px;border-radius:50px;border:1px solid var(--border-soft);cursor:pointer;transition:var(--transition);font-size:0.9rem;"><input type="radio" name="indexing" value="scopus" required style="display:none;"><span>Scopus</span></label>
+              <label style="display:flex;align-items:center;background:var(--white);padding:8px 16px;border-radius:50px;border:1px solid var(--border-soft);cursor:pointer;transition:var(--transition);font-size:0.9rem;"><input type="radio" name="indexing" value="web-of-science" style="display:none;"><span>WoS</span></label>
+              <label style="display:flex;align-items:center;background:var(--white);padding:8px 16px;border-radius:50px;border:1px solid var(--border-soft);cursor:pointer;transition:var(--transition);font-size:0.9rem;"><input type="radio" name="indexing" value="abdc" style="display:none;"><span>ABDC</span></label>
+              <label style="display:flex;align-items:center;background:var(--white);padding:8px 16px;border-radius:50px;border:1px solid var(--border-soft);cursor:pointer;transition:var(--transition);font-size:0.9rem;"><input type="radio" name="indexing" value="google-scholar" style="display:none;"><span>Google Scholar</span></label>
+              <label style="display:flex;align-items:center;background:var(--white);padding:8px 16px;border-radius:50px;border:1px solid var(--border-soft);cursor:pointer;transition:var(--transition);font-size:0.9rem;"><input type="radio" name="indexing" value="others" style="display:none;"><span>Others</span></label>
+            </div>
           </div>
-          <div class="form-group"><label for="subject">Research Field / Subject</label><input type="text" id="subject" placeholder="e.g. Engineering, Medicine, Management…"></div>
-          <div class="form-group"><label for="message">Tell Us About Your Research</label><textarea id="message" placeholder="Share your research topic, current stage, target database (Scopus, WoS, etc.) and any specific requirements…" rows="5"></textarea></div>
-          <button type="submit" class="btn btn-gold form-submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
-          <div class="form-success" id="formSuccess">✓ Your message has been sent! We'll be in touch within 24 hours. For faster response, WhatsApp us directly.</div>
+          <div class="form-group"><label for="message">Additional Information (max 50 words)</label><textarea id="message" name="message" placeholder="Provide any additional details about your submission (max 50 words)" rows="4"></textarea></div>
+          <button type="submit" class="btn btn-gold form-submit-btn"><i class="fas fa-paper-plane"></i> Submit</button>
+          <div class="form-success" id="formSuccess">✓ Thank you for your submission! We will contact you shortly.</div>
         </form>
       </div>
     </div>
@@ -157,7 +150,7 @@
     <p>Join over 1,000 researchers who have published with us — start your journey today with a free consultation.</p>
     <div class="cta-actions">
       <a href="https://wa.me/916205170397?text=Hello%2C%20I%20want%20to%20publish%20my%20research%20paper" class="btn btn-gold"><i class="fab fa-whatsapp"></i> Start on WhatsApp</a>
-      <a href="mailto:info@handwriterspublication.in" class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border:2px solid rgba(255,255,255,0.2);"><i class="fas fa-envelope"></i> Email Us Directly</a>
+      <a href="mailto:info@handwriterspublication.com" class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border:2px solid rgba(255,255,255,0.2);"><i class="fas fa-envelope"></i> Email Us Directly</a>
     </div>
   </div>
 </section>
@@ -167,7 +160,7 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="index.html" class="logo-wrap"><div class="logo-icon">📖</div><div class="logo-text-wrap"><span class="logo-name" style="color:#fff">HandWriters</span><span class="logo-tagline">Publication &amp; Research</span></div></a>
+        <a href="index.html" class="logo-wrap"><img src="logo.png" alt="HandWriters Publication Logo" style="height:44px;width:auto;filter:brightness(10);"></a>
         <p>Your trusted partner in research publication, patent filing and academic excellence worldwide.</p>
         <div class="footer-social">
           <a href="https://www.facebook.com/profile.php?id=61573253404960" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -178,7 +171,7 @@
       <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Manuscript Writing</a></li><li><a href="services.html">Editing &amp; Review</a></li><li><a href="services.html">Journal Submission</a></li><li><a href="services.html">Patent Filing</a></li><li><a href="services.html">Research Guidance</a></li></ul></div>
       <div class="footer-col footer-contact"><h4>Contact</h4>
-        <p><span class="footer-contact-icon">📧</span><a href="mailto:info@handwriterspublication.in">info@handwriterspublication.in</a></p>
+        <p><span class="footer-contact-icon">📧</span><a href="mailto:info@handwriterspublication.com">info@handwriterspublication.com</a></p>
         <p><span class="footer-contact-icon">📤</span><a href="mailto:submissionwritingservices@outlook.com">Submit your paper</a></p>
         <p><span class="footer-contact-icon">📞</span><a href="tel:+916205170397">+91 62051 70397</a></p>
         <p><span class="footer-contact-icon">💬</span><a href="https://wa.me/916205170397">WhatsApp anytime</a></p>
