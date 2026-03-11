@@ -873,19 +873,19 @@ img { max-width: 100%; }
   .hero h1 { font-size: 2.1rem; line-height: 1.15; margin-bottom: 6px; }
   .hero h1 em { font-size: 1em; }
   .hero-desc { font-size: 0.92rem; margin-bottom: 26px; }
-  .hero-actions { gap: 10px; margin-bottom: 32px; }
+  .hero-actions { gap: 10px; margin-bottom: 8px; }
   .hero-actions .btn { padding: 12px 22px; font-size: 0.83rem; }
   .hero-trust {
     padding-top: 24px;
-    gap: 14px;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     overflow-x: visible;
   }
   .hero-trust::-webkit-scrollbar { display: none; }
-  .trust-number { font-size: 1.4rem; }
-  .trust-label { font-size: 0.66rem; }
-  .trust-divider { height: 28px; flex-shrink: 0; }
+  .trust-number { font-size: 1.2rem; }
+  .trust-label { font-size: 0.6rem; }
+  .trust-divider { height: 24px; flex-shrink: 0; }
 
   /* Hero card hidden on mobile */
   .hero-right { display: none; }
