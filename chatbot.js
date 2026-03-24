@@ -469,7 +469,7 @@ We'll review your paper and provide a **free initial assessment** with our recom
       const hour = new Date().getHours();
       const timePart = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
       return {
-        text: `${timePart}! 👋 I'm **Aria**, your HandWriters Publication assistant.\n\nI can help you with:\n🔹 Our publication services\n🔹 Pricing & timelines\n🔹 Scopus/WoS journal selection\n🔹 Manuscript guidance\n🔹 Patent filing\n🔹 Getting started\n\nWhat would you like to know?`,
+        text: `${timePart}! 👋 I'm **Aria** from HandWriters Publication.\n\nI can help with Scopus/WoS publication, manuscript writing, pricing, timelines, and patent filing.\n\nHow can I assist you today?`,
         quickReplies: ['Services', 'Pricing', 'Get started', 'Contact team']
       };
     }
@@ -505,7 +505,7 @@ We'll review your paper and provide a **free initial assessment** with our recom
 
     // Default fallback
     return {
-      text: `I'm not sure I understood that perfectly, but I'm here to help! 🤔\n\nYou can ask me about:\n🔹 **Services** — What we offer\n🔹 **Pricing** — Fees and guarantees\n🔹 **Timeline** — How long it takes\n🔹 **Scopus/WoS** — Journal options\n🔹 **Process** — How we work\n🔹 **Patent filing** — IP protection\n\nOr you can <a href="https://wa.me/916205170397" target="_blank">WhatsApp our team directly</a> for immediate help!`,
+      text: `I didn't quite catch that — could you rephrase? 🤔\n\nI'm best with questions about **services**, **pricing**, **timelines**, **Scopus/WoS journals**, or **patent filing**.\n\nOr reach our team directly on <a href="https://wa.me/916205170397" target="_blank">WhatsApp</a> for instant help!`,
       quickReplies: ['Services', 'Pricing', 'Get started', 'Contact team']
     };
   }
@@ -525,16 +525,9 @@ We'll review your paper and provide a **free initial assessment** with our recom
     // Show user message
     appendMessage('user', text.replace(/</g, '&lt;').replace(/>/g, '&gt;'));
 
-    // Show typing
-    const typingEl = showTypingIndicator();
-
-    // Simulate thinking delay
-    const delay = 700 + Math.random() * 600;
-    setTimeout(() => {
-      removeTypingIndicator();
-      const reply = getBotReply(text);
-      appendMessage('bot', formatBotText(reply.text), reply.quickReplies);
-    }, delay);
+    // Instant bot reply — no typing indicator
+    const reply = getBotReply(text);
+    appendMessage('bot', formatBotText(reply.text), reply.quickReplies);
   }
 
   function autoResizeInput(textarea) {
@@ -545,7 +538,7 @@ We'll review your paper and provide a **free initial assessment** with our recom
 
   /* ── Welcome Message ─────────────────────────────────────────── */
   function sendWelcomeMessage() {
-    const welcomeText = `👋 Hi! I'm **Aria**, your HandWriters Publication assistant.\n\nI can help you with publication services, pricing, Scopus/WoS journal selection, timelines, patents and more.\n\nWhat brings you here today?`;
+    const welcomeText = `👋 Hi! I'm **Aria** from HandWriters Publication.\n\nAsk me about our services, pricing, journal options, or getting started. I'm here to help!`;
 
     const categoriesHTML = `
       <div class="chat-categories">

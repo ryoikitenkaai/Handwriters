@@ -223,4 +223,128 @@ document.addEventListener('DOMContentLoaded', () => {
     floatCard();
   }
 
+  // ── Call for Papers Popup ──────────────────────────────────────
+  (function initCFPPopup() {
+    // Only show once per session
+    if (sessionStorage.getItem('cfpShown')) return;
+
+    const monthNames = ['January','February','March','April','May','June',
+      'July','August','September','October','November','December'];
+    const currentMonth = monthNames[new Date().getMonth()];
+    const currentYear = new Date().getFullYear();
+
+    // Create popup HTML
+    const overlay = document.createElement('div');
+    overlay.className = 'cfp-overlay';
+    overlay.innerHTML = `
+      <div class="cfp-popup">
+        <button class="cfp-close" aria-label="Close popup">&times;</button>
+        <div class="cfp-badge">📢 Open Now</div>
+        <div class="cfp-title">Call for Papers — <span>${currentMonth} ${currentYear}</span></div>
+        <p class="cfp-subtitle">Submit your manuscript for publication in Scopus, WoS & other top-indexed journals. Free consultation included.</p>
+        <form class="cfp-form" id="cfpForm" novalidate>
+          <div class="form-group">
+            <label>Full Name <span style="color:var(--gold)">*</span></label>
+            <input type="text" name="name" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address <span style="color:var(--gold)">*</span></label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <label>WhatsApp Number <span style="color:var(--gold)">*</span></label>
+            <input type="tel" name="whatsapp" placeholder="Enter your 10-digit number" required>
+          </div>
+          <div class="form-group">
+            <label>Subject Area <span style="color:var(--gold)">*</span></label>
+            <input type="text" name="subject" placeholder="e.g. Computer Science, Medicine" required>
+          </div>
+          <div class="form-group">
+            <label>Target Indexing</label>
+            <div class="cfp-pills">
+              <label class="cfp-pill selected"><input type="radio" name="indexing" value="scopus" checked><span>Scopus</span></label>
+              <label class="cfp-pill"><input type="radio" name="indexing" value="web-of-science"><span>WoS</span></label>
+              <label class="cfp-pill"><input type="radio" name="indexing" value="abdc"><span>ABDC</span></label>
+              <label class="cfp-pill"><input type="radio" name="indexing" value="google-scholar"><span>Google Scholar</span></label>
+              <label class="cfp-pill"><input type="radio" name="indexing" value="others"><span>Others</span></label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-gold cfp-submit"><i class="fas fa-paper-plane"></i> Submit Paper Inquiry</button>
+          <div class="cfp-success" id="cfpSuccess">✓ Thank you! We'll contact you within 24 hours.</div>
+        </form>
+        <div class="cfp-footer-text">🔒 100% Refund Guarantee · No Hidden Fees · 95% Success Rate</div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    // Pill selection
+    overlay.querySelectorAll('.cfp-pill').forEach(pill => {
+      pill.addEventListener('click', function() {
+        overlay.querySelectorAll('.cfp-pill').forEach(p => p.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+
+    // Close handlers
+    const closePopup = () => {
+      overlay.classList.remove('active');
+      sessionStorage.setItem('cfpShown', '1');
+    };
+    overlay.querySelector('.cfp-close').addEventListener('click', closePopup);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closePopup();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) closePopup();
+    });
+
+    // Show after 5 seconds
+    setTimeout(() => {
+      overlay.classList.add('active');
+      sessionStorage.setItem('cfpShown', '1');
+    }, 5000);
+
+    // Form submission
+    const cfpForm = document.getElementById('cfpForm');
+    if (cfpForm) {
+      cfpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = cfpForm.querySelector('.cfp-submit');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
+        btn.disabled = true;
+
+        const CRM_URL = 'https://crm.handwriterspublication.com';
+        const API_KEY = 'hwp_lp_8f3a2b9e1c7d4f06a5e0b2c8d3f1e7a9';
+        const formData = new FormData(cfpForm);
+
+        fetch(CRM_URL + '/api/receive_lead.php', {
+          method: 'POST',
+          headers: { 'X-API-Key': API_KEY },
+          body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            btn.innerHTML = '✓ Submitted!';
+            btn.style.background = '#22c55e';
+            const success = document.getElementById('cfpSuccess');
+            if (success) success.style.display = 'block';
+            cfpForm.reset();
+            setTimeout(closePopup, 2500);
+          } else {
+            alert('Submission failed: ' + (data.message || 'Please try again.'));
+            btn.innerHTML = originalHTML;
+            btn.disabled = false;
+          }
+        })
+        .catch(() => {
+          alert('Error submitting. Please check your connection.');
+          btn.innerHTML = originalHTML;
+          btn.disabled = false;
+        });
+      });
+    }
+  })();
+
 });
