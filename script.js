@@ -314,11 +314,11 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
         btn.disabled = true;
 
-        const CRM_URL = 'https://crm.handwriterspublication.com';
+        const CRM_URL = 'https://xcrm.handwriterspublication.com';
         const API_KEY = 'hwp_lp_8f3a2b9e1c7d4f06a5e0b2c8d3f1e7a9';
         const formData = new FormData(cfpForm);
 
-        fetch(CRM_URL + '/api/receive_lead.php', {
+        fetch('https://xcrm.handwriterspublication.com/api/leads/receive', {
           method: 'POST',
           headers: { 'X-API-Key': API_KEY },
           body: formData
