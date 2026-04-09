@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── Lead Submission Helpers ───────────────────────────────────
-  const LEAD_ENDPOINT = 'https://xcrm.handwriterspublication.com/api/leads/receive';
+  const LEAD_ENDPOINT = 'https://xcrm.handwriterspublication.com/api/webhook/lead';
   const LANDING_API_KEY = 'hwp_lp_8f3a2b9e1c7d4f06a5e0b2c8d3f1e7a9';
   const WHATSAPP_PATTERN = /^\+?\d{7,15}$/;
 
