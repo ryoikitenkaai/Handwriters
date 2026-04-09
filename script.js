@@ -129,6 +129,95 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ── Lead Submission Helpers ───────────────────────────────────
+  const LEAD_ENDPOINT = 'https://xcrm.handwriterspublication.com/api/leads/receive';
+  const LANDING_API_KEY = 'hwp_lp_8f3a2b9e1c7d4f06a5e0b2c8d3f1e7a9';
+  const WHATSAPP_PATTERN = /^\+?\d{7,15}$/;
+
+  function normalizeWhatsappNumber(value) {
+    return (value || '').trim().replace(/[()\-\s]/g, '');
+  }
+
+  function countWords(value) {
+    return (value || '').trim().split(/\s+/).filter(Boolean).length;
+  }
+
+  function extractPayloadMessage(payload) {
+    if (!payload || typeof payload !== 'object') return '';
+    if (typeof payload.message === 'string' && payload.message.trim()) {
+      return payload.message.trim();
+    }
+
+    const detail = payload.detail;
+    if (Array.isArray(detail)) {
+      const joined = detail
+        .map(item => (item && typeof item.msg === 'string' ? item.msg.trim() : ''))
+        .filter(Boolean)
+        .join(', ');
+      if (joined) return joined;
+    }
+
+    if (typeof detail === 'string' && detail.trim()) {
+      return detail.trim();
+    }
+
+    return '';
+  }
+
+  async function submitLeadForm(form) {
+    const formData = new FormData(form);
+
+    const whatsapp = normalizeWhatsappNumber(String(formData.get('whatsapp') || ''));
+    if (!WHATSAPP_PATTERN.test(whatsapp)) {
+      throw new Error('Please enter a valid WhatsApp number (7-15 digits, optional +).');
+    }
+    formData.set('whatsapp', whatsapp);
+
+    const message = String(formData.get('message') || '').trim();
+    if (message && countWords(message) > 50) {
+      throw new Error('Please keep additional information within 50 words.');
+    }
+
+    const response = await fetch(LEAD_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'X-API-Key': LANDING_API_KEY
+      },
+      body: formData,
+    });
+
+    let payload = {};
+    try {
+      const parsed = await response.json();
+      if (parsed && typeof parsed === 'object') {
+        payload = parsed;
+      }
+    } catch (_err) {
+      payload = {};
+    }
+
+    if (!response.ok || payload.success === false) {
+      const serverMessage = extractPayloadMessage(payload);
+      if (serverMessage) {
+        throw new Error(serverMessage);
+      }
+
+      if (response.status === 403) {
+        throw new Error('Submission authentication failed. Please contact support.');
+      }
+      if (response.status === 429) {
+        throw new Error('Too many requests. Please wait and try again.');
+      }
+      if (response.status === 422) {
+        throw new Error('Please check the form details and try again.');
+      }
+
+      throw new Error(`Server error (${response.status}). Please try again.`);
+    }
+
+    return payload;
+  }
+
   // ── Contact Form — CRM Submission ──────────────────────────────
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
@@ -146,30 +235,21 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+
       const btn = contactForm.querySelector('.form-submit-btn');
       const originalHTML = btn.innerHTML;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
       btn.disabled = true;
 
-      const CRM_URL = 'https://xcrm.handwriterspublication.com';
-      const API_KEY = 'hwp_lp_8f3a2b9e1c7d4f06a5e0b2c8d3f1e7a9';
-
-      const formData = new FormData(contactForm);
-
-      fetch('https://xcrm.handwriterspublication.com/api/leads/receive', {
-        method: 'POST',
-        headers: { 'X-API-Key': API_KEY },
-        body: formData
-      })
-      .then(response => {
-        if (!response.ok && response.status !== 422 && response.status !== 429) {
-          throw new Error('Server error (' + response.status + '). Please try again.');
-        }
-        return response.json();
-      })
-      .then(data => {
+      try {
+        const data = await submitLeadForm(contactForm);
         if (data.success) {
           btn.innerHTML = '✓ Submitted Successfully';
           btn.style.background = '#22c55e';
@@ -187,13 +267,12 @@ document.addEventListener('DOMContentLoaded', () => {
           btn.innerHTML = originalHTML;
           btn.disabled = false;
         }
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error:', error);
-        alert('There was an error submitting your form. Please check your connection and try again.');
+        alert(error?.message || 'There was an error submitting your form. Please check your connection and try again.');
         btn.innerHTML = originalHTML;
         btn.disabled = false;
-      });
+      }
     });
   }
 
@@ -253,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="form-group">
             <label>WhatsApp Number <span style="color:var(--gold)">*</span></label>
-            <input type="tel" name="whatsapp" placeholder="Enter your 10-digit number" required>
+            <input type="tel" name="whatsapp" placeholder="Enter your WhatsApp number" pattern="\+?\d{7,15}" title="Use 7-15 digits, optional +" required>
           </div>
           <div class="form-group">
             <label>Subject Area <span style="color:var(--gold)">*</span></label>
@@ -307,24 +386,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Form submission
     const cfpForm = document.getElementById('cfpForm');
     if (cfpForm) {
-      cfpForm.addEventListener('submit', (e) => {
+      cfpForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        if (!cfpForm.checkValidity()) {
+          cfpForm.reportValidity();
+          return;
+        }
+
         const btn = cfpForm.querySelector('.cfp-submit');
         const originalHTML = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
         btn.disabled = true;
 
-        const CRM_URL = 'https://xcrm.handwriterspublication.com';
-        const API_KEY = 'hwp_lp_8f3a2b9e1c7d4f06a5e0b2c8d3f1e7a9';
-        const formData = new FormData(cfpForm);
-
-        fetch('https://xcrm.handwriterspublication.com/api/leads/receive', {
-          method: 'POST',
-          headers: { 'X-API-Key': API_KEY },
-          body: formData
-        })
-        .then(res => res.json())
-        .then(data => {
+        try {
+          const data = await submitLeadForm(cfpForm);
           if (data.success) {
             btn.innerHTML = '✓ Submitted!';
             btn.style.background = '#22c55e';
@@ -337,12 +413,11 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = originalHTML;
             btn.disabled = false;
           }
-        })
-        .catch(() => {
-          alert('Error submitting. Please check your connection.');
+        } catch (error) {
+          alert(error?.message || 'Error submitting. Please check your connection.');
           btn.innerHTML = originalHTML;
           btn.disabled = false;
-        });
+        }
       });
     }
   })();
