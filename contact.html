@@ -113,7 +113,23 @@
         <form id="contactForm" action="https://xcrm.handwriterspublication.com/api/webhook/lead" method="POST" novalidate>
           <div class="form-group"><label for="name">Full Name <span style="color:var(--gold)">*</span></label><input type="text" id="name" name="name" placeholder="Enter your full name" required></div>
           <div class="form-group"><label for="email">Email Address <span style="color:var(--gold)">*</span></label><input type="email" id="email" name="email" placeholder="Enter your email address" required></div>
-          <div class="form-group"><label for="whatsapp">WhatsApp Number <span style="color:var(--gold)">*</span></label><input type="tel" id="whatsapp" name="whatsapp" placeholder="Enter your WhatsApp number" pattern="\+?\d{7,15}" title="Use 7-15 digits, optional +" required></div>
+          <div class="form-group">
+            <label for="whatsapp">WhatsApp Number <span style="color:var(--gold)">*</span></label>
+            <div class="form-group-inline">
+              <select name="country_code" required title="Country Code">
+                <option value="" disabled selected>Code</option>
+                <option value="+91">+91 (IN)</option>
+                <option value="+1">+1 (US/CA)</option>
+                <option value="+44">+44 (UK)</option>
+                <option value="+61">+61 (AU)</option>
+                <option value="+971">+971 (AE)</option>
+                <option value="+27">+27 (ZA)</option>
+                <option value="+65">+65 (SG)</option>
+                <option value="+60">+60 (MY)</option>
+              </select>
+              <input type="tel" id="whatsapp" name="phone_number" placeholder="Enter your WhatsApp number" pattern="\d{7,15}" title="Use 7-15 digits" required>
+            </div>
+          </div>
           <div class="form-group"><label for="subject">Subject Area <span style="color:var(--gold)">*</span></label><input type="text" id="subject" name="subject" placeholder="Enter your subject area" required></div>
           <div class="form-group">
             <label>Indexing Preferences <span style="color:var(--gold)">*</span></label>

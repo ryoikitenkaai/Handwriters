@@ -167,11 +167,19 @@ document.addEventListener('DOMContentLoaded', () => {
   async function submitLeadForm(form) {
     const formData = new FormData(form);
 
-    const whatsapp = normalizeWhatsappNumber(String(formData.get('whatsapp') || ''));
+    const countryCode = String(formData.get('country_code') || '');
+    let rawWhatsapp = String(formData.get('whatsapp') || '');
+    if (!rawWhatsapp && formData.has('phone_number')) {
+      rawWhatsapp = countryCode + String(formData.get('phone_number') || '');
+    }
+
+    const whatsapp = normalizeWhatsappNumber(rawWhatsapp);
     if (!WHATSAPP_PATTERN.test(whatsapp)) {
       throw new Error('Please enter a valid WhatsApp number (7-15 digits, optional +).');
     }
     formData.set('whatsapp', whatsapp);
+    formData.delete('country_code');
+    formData.delete('phone_number');
 
     const message = String(formData.get('message') || '').trim();
     if (message && countWords(message) > 50) {
@@ -332,7 +340,20 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="form-group">
             <label>WhatsApp Number <span style="color:var(--gold)">*</span></label>
-            <input type="tel" name="whatsapp" placeholder="Enter your WhatsApp number" pattern="\+?\d{7,15}" title="Use 7-15 digits, optional +" required>
+            <div class="form-group-inline">
+              <select name="country_code" required title="Country Code">
+                <option value="" disabled selected>Code</option>
+                <option value="+91">+91 (IN)</option>
+                <option value="+1">+1 (US/CA)</option>
+                <option value="+44">+44 (UK)</option>
+                <option value="+61">+61 (AU)</option>
+                <option value="+971">+971 (AE)</option>
+                <option value="+27">+27 (ZA)</option>
+                <option value="+65">+65 (SG)</option>
+                <option value="+60">+60 (MY)</option>
+              </select>
+              <input type="tel" name="phone_number" placeholder="Enter your WhatsApp number" pattern="\d{7,15}" title="Use 7-15 digits" required>
+            </div>
           </div>
           <div class="form-group">
             <label>Subject Area <span style="color:var(--gold)">*</span></label>
