@@ -134,6 +134,112 @@ document.addEventListener('DOMContentLoaded', () => {
   const LANDING_API_KEY = 'hwp_lp_8f3a2b9e1c7d4f06a5e0b2c8d3f1e7a9';
   const WHATSAPP_PATTERN = /^\+?\d{7,15}$/;
 
+  const countriesData = [
+  { name: 'India', code: '+91', flag: '🇮🇳' },
+  { name: 'United States', code: '+1', flag: '🇺🇸' },
+  { name: 'United Kingdom', code: '+44', flag: '🇬🇧' },
+  { name: 'Australia', code: '+61', flag: '🇦🇺' },
+  { name: 'Philippines', code: '+63', flag: '🇵🇭' },
+  { name: 'Vietnam', code: '+84', flag: '🇻🇳' },
+  { name: 'Malaysia', code: '+60', flag: '🇲🇾' },
+  { name: 'Singapore', code: '+65', flag: '🇸🇬' },
+  { name: 'Indonesia', code: '+62', flag: '🇮🇩' },
+  { name: 'Thailand', code: '+66', flag: '🇹🇭' },
+  { name: 'United Arab Emirates', code: '+971', flag: '🇦🇪' },
+  { name: 'Saudi Arabia', code: '+966', flag: '🇸🇦' },
+  { name: 'Pakistan', code: '+92', flag: '🇵🇰' },
+  { name: 'Bangladesh', code: '+880', flag: '🇧🇩' },
+  { name: 'Nepal', code: '+977', flag: '🇳🇵' },
+  { name: 'Sri Lanka', code: '+94', flag: '🇱🇰' },
+  { name: 'Japan', code: '+81', flag: '🇯🇵' },
+  { name: 'South Korea', code: '+82', flag: '🇰🇷' },
+  { name: 'China', code: '+86', flag: '🇨🇳' },
+  { name: 'France', code: '+33', flag: '🇫🇷' },
+  { name: 'Germany', code: '+49', flag: '🇩🇪' },
+  { name: 'Italy', code: '+39', flag: '🇮🇹' },
+  { name: 'Spain', code: '+34', flag: '🇪🇸' },
+  { name: 'South Africa', code: '+27', flag: '🇿🇦' },
+  { name: 'Nigeria', code: '+234', flag: '🇳🇬' },
+  { name: 'Kenya', code: '+254', flag: '🇰🇪' },
+  { name: 'Egypt', code: '+20', flag: '🇪🇬' },
+  { name: 'Canada', code: '+1', flag: '🇨🇦' },
+  { name: 'Brazil', code: '+55', flag: '🇧🇷' },
+  { name: 'Mexico', code: '+52', flag: '🇲🇽' },
+  { name: 'Argentina', code: '+54', flag: '🇦🇷' },
+  { name: 'Peru', code: '+51', flag: '🇵🇪' },
+  { name: 'Colombia', code: '+57', flag: '🇨🇴' },
+  { name: 'Netherlands', code: '+31', flag: '🇳🇱' },
+  { name: 'Sweden', code: '+46', flag: '🇸🇪' },
+  { name: 'Switzerland', code: '+41', flag: '🇨🇭' },
+  { name: 'Turkey', code: '+90', flag: '🇹🇷' },
+  { name: 'New Zealand', code: '+64', flag: '🇳🇿' },
+  { name: 'Russia', code: '+7', flag: '🇷🇺' }
+  ];
+
+  function bindWhatsappLock(wrap) {
+    if (!wrap) return;
+    const trigger = wrap.querySelector('.country-selector-trigger');
+    if (!trigger) return;
+
+    const dropdown = wrap.querySelector('.country-dropdown');
+    const searchInput = wrap.querySelector('.country-search-wrap input');
+    const list = wrap.querySelector('.country-list');
+    const selectedFlag = wrap.querySelector('.selected-flag');
+    const selectedCode = wrap.querySelector('.selected-code');
+    const hiddenPrefix = wrap.querySelector('input[name="wa_prefix"]');
+
+    function renderList(filter = '') {
+      list.innerHTML = '';
+      const lowerFilter = filter.toLowerCase();
+      const filtered = countriesData.filter(c => c.name.toLowerCase().includes(lowerFilter) || c.code.includes(lowerFilter));
+      
+      filtered.forEach(country => {
+        const li = document.createElement('li');
+        li.innerHTML = '<span class="country-flag">' + country.flag + '</span>' +
+                       '<span class="country-name">' + country.name + '</span>' +
+                       '<span class="country-dial">' + country.code + '</span>';
+        li.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectedFlag.textContent = country.flag;
+          selectedCode.textContent = country.code;
+          hiddenPrefix.value = country.code;
+          dropdown.classList.remove('show');
+          const telInput = wrap.querySelector('input[type="tel"]');
+          if (telInput) telInput.focus();
+        });
+        list.appendChild(li);
+      });
+    }
+
+    renderList();
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.country-dropdown.show').forEach(d => {
+        if(d !== dropdown) d.classList.remove('show');
+      });
+      dropdown.classList.toggle('show');
+      if(dropdown.classList.contains('show') && searchInput) {
+        searchInput.focus();
+      }
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        renderList(e.target.value);
+      });
+      searchInput.addEventListener('click', (e) => e.stopPropagation());
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.country-dropdown').forEach(d => {
+      if(!d.contains(e.target) && !d.previousElementSibling.contains(e.target)) {
+        d.classList.remove('show');
+      }
+    });
+  });
+
   function normalizeWhatsappNumber(value) {
     return (value || '').trim().replace(/[()\-\s]/g, '');
   }
@@ -167,19 +273,19 @@ document.addEventListener('DOMContentLoaded', () => {
   async function submitLeadForm(form) {
     const formData = new FormData(form);
 
-    const countryCode = String(formData.get('country_code') || '');
-    let rawWhatsapp = String(formData.get('whatsapp') || '');
-    if (!rawWhatsapp && formData.has('phone_number')) {
-      rawWhatsapp = countryCode + String(formData.get('phone_number') || '');
+    const waPrefix = String(formData.get('wa_prefix') || '');
+    let rawWhatsapp = String(formData.get('whatsapp_local') || '');
+    if (!rawWhatsapp && formData.has('whatsapp')) {
+      rawWhatsapp = String(formData.get('whatsapp') || '');
     }
 
-    const whatsapp = normalizeWhatsappNumber(rawWhatsapp);
+    const whatsapp = normalizeWhatsappNumber(waPrefix + rawWhatsapp);
     if (!WHATSAPP_PATTERN.test(whatsapp)) {
       throw new Error('Please enter a valid WhatsApp number (7-15 digits, optional +).');
     }
     formData.set('whatsapp', whatsapp);
-    formData.delete('country_code');
-    formData.delete('phone_number');
+    formData.delete('wa_prefix');
+    formData.delete('whatsapp_local');
 
     const message = String(formData.get('message') || '').trim();
     if (message && countWords(message) > 50) {
@@ -229,6 +335,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Contact Form — CRM Submission ──────────────────────────────
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    const staticWaWrap = contactForm.querySelector('.wa-input-wrap');
+    if (staticWaWrap) bindWhatsappLock(staticWaWrap);
+
     // Indexing radio pill selection styling
     contactForm.querySelectorAll('input[name="indexing"]').forEach(radio => {
       radio.closest('label').addEventListener('click', function() {
@@ -312,8 +421,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Call for Papers Popup ──────────────────────────────────────
   (function initCFPPopup() {
-    // Only show once per session
-    if (sessionStorage.getItem('cfpShown')) return;
+    // Only show once per session (disabled for testing)
+    // if (sessionStorage.getItem('cfpShown')) return;
 
     const monthNames = ['January','February','March','April','May','June',
       'July','August','September','October','November','December'];
@@ -340,19 +449,25 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="form-group">
             <label>WhatsApp Number <span style="color:var(--gold)">*</span></label>
-            <div class="form-group-inline">
-              <select name="country_code" required title="Country Code">
-                <option value="" disabled selected>Code</option>
-                <option value="+91">+91 (IN)</option>
-                <option value="+1">+1 (US/CA)</option>
-                <option value="+44">+44 (UK)</option>
-                <option value="+61">+61 (AU)</option>
-                <option value="+971">+971 (AE)</option>
-                <option value="+27">+27 (ZA)</option>
-                <option value="+65">+65 (SG)</option>
-                <option value="+60">+60 (MY)</option>
-              </select>
-              <input type="tel" name="phone_number" placeholder="Enter your WhatsApp number" pattern="\d{7,15}" title="Use 7-15 digits" required>
+            <div class="wa-input-wrap">
+              <div class="country-selector" id="cfpCountrySelector">
+                <div class="country-selector-trigger" id="cfpCountrySelectorTrigger">
+                  <span class="selected-flag" id="cfpSelectedFlag">🇮🇳</span>
+                  <i class="fas fa-caret-down"></i>
+                  <span class="selected-code" id="cfpSelectedCode">+91</span>
+                </div>
+                <div class="country-dropdown" id="cfpCountryDropdown">
+                  <div class="country-search-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="cfpCountrySearch" placeholder="Search country...">
+                  </div>
+                  <ul class="country-list" id="cfpCountryList">
+                    <!-- Populated by JS -->
+                  </ul>
+                </div>
+              </div>
+              <input type="hidden" id="cfpWaPrefix" name="wa_prefix" value="+91">
+              <input type="tel" name="whatsapp_local" placeholder="Phone Number" pattern="[\d\s\+\-]{7,20}" title="Enter full number" required>
             </div>
           </div>
           <div class="form-group">
@@ -398,15 +513,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Escape' && overlay.classList.contains('active')) closePopup();
     });
 
-    // Show after 5 seconds
+    // Show after 2 seconds for testing
     setTimeout(() => {
       overlay.classList.add('active');
       sessionStorage.setItem('cfpShown', '1');
-    }, 5000);
+    }, 2000);
 
     // Form submission
     const cfpForm = document.getElementById('cfpForm');
     if (cfpForm) {
+      const cfpWaWrap = cfpForm.querySelector('.wa-input-wrap');
+      if (cfpWaWrap) bindWhatsappLock(cfpWaWrap);
+
       cfpForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
