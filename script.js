@@ -130,9 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── Lead Submission Helpers ───────────────────────────────────
-  const LEAD_ENDPOINT = 'https://xcrm.handwriterspublication.com/api/webhook/lead';
-  const LANDING_API_KEY = 'hwp_lp_8f3a2b9e1c7d4f06a5e0b2c8d3f1e7a9';
+  const LOCAL_LEADS_STORAGE_KEY = 'hwp_local_leads_v1';
+  const LOCAL_LEAD_RETENTION_DAYS = 90;
   const WHATSAPP_PATTERN = /^\+?\d{7,15}$/;
+
+  // CRM webhook config preserved for quick re-enable in future.
+  // const LEAD_ENDPOINT = 'https://xcrm.handwriterspublication.com/api/webhook/lead';
+  // const LANDING_API_KEY = 'REPLACE_WITH_YOUR_LANDING_API_KEY';
 
   const countriesData = [
   { name: 'India', code: '+91', flag: '🇮🇳' },
@@ -270,6 +274,74 @@ document.addEventListener('DOMContentLoaded', () => {
     return '';
   }
 
+  function isLeadWithinRetention(lead) {
+    if (!lead || typeof lead !== 'object') return false;
+    if (!lead.submitted_at) return true;
+
+    const submittedMs = Date.parse(lead.submitted_at);
+    if (Number.isNaN(submittedMs)) return true;
+
+    const retentionMs = LOCAL_LEAD_RETENTION_DAYS * 24 * 60 * 60 * 1000;
+    return Date.now() - submittedMs <= retentionMs;
+  }
+
+  function getStoredLeads() {
+    try {
+      const raw = window.localStorage.getItem(LOCAL_LEADS_STORAGE_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      const leads = Array.isArray(parsed) ? parsed.filter(isLeadWithinRetention) : [];
+
+      if (Array.isArray(parsed) && leads.length !== parsed.length) {
+        window.localStorage.setItem(LOCAL_LEADS_STORAGE_KEY, JSON.stringify(leads));
+      }
+
+      return leads;
+    } catch (_err) {
+      return [];
+    }
+  }
+
+  function saveLeadLocally(lead) {
+    if (!window.localStorage) {
+      throw new Error('Local storage is not available in this browser.');
+    }
+
+    const existing = getStoredLeads();
+    const updated = [lead, ...existing].slice(0, 5000);
+
+    try {
+      window.localStorage.setItem(LOCAL_LEADS_STORAGE_KEY, JSON.stringify(updated));
+    } catch (_err) {
+      throw new Error('Could not save lead locally. Please clear browser storage and try again.');
+    }
+  }
+
+  function downloadLeadBackup(lead) {
+    const content = [
+      'Temporary Lead Backup',
+      'Submitted: ' + String(lead.submitted_at || ''),
+      'Name: ' + String(lead.name || ''),
+      'Email: ' + String(lead.email || ''),
+      'WhatsApp: ' + String(lead.whatsapp || ''),
+      'Subject: ' + String(lead.subject || ''),
+      'Indexing: ' + String(lead.indexing || ''),
+      'Message: ' + String(lead.message || ''),
+      'Source Form: ' + String(lead.source_form || ''),
+      'Source Page: ' + String(lead.source_page || '')
+    ].join('\n');
+
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'lead-backup-' + Date.now() + '.txt';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+
   async function submitLeadForm(form) {
     const formData = new FormData(form);
 
@@ -292,6 +364,29 @@ document.addEventListener('DOMContentLoaded', () => {
       throw new Error('Please keep additional information within 50 words.');
     }
 
+    const leadRecord = {
+      id: 'lead_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+      name: String(formData.get('name') || '').trim(),
+      email: String(formData.get('email') || '').trim(),
+      whatsapp,
+      subject: String(formData.get('subject') || '').trim(),
+      indexing: String(formData.get('indexing') || '').trim(),
+      message,
+      source_form: form.id || 'lead-form',
+      source_page: window.location.pathname || '',
+      submitted_at: new Date().toISOString()
+    };
+
+    try {
+      saveLeadLocally(leadRecord);
+    } catch (_storageError) {
+      downloadLeadBackup(leadRecord);
+      throw new Error('Local save failed, so a backup .txt file was downloaded. Please keep it and share it with your team.');
+    }
+
+    /*
+    // CRM webhook submission is intentionally paused while CRM is down.
+    // Re-enable by uncommenting this block and LEAD_ENDPOINT/LANDING_API_KEY.
     const response = await fetch(LEAD_ENDPOINT, {
       method: 'POST',
       headers: {
@@ -330,9 +425,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     return payload;
+    */
+
+    return {
+      success: true,
+      message: 'Lead saved locally.',
+      storage: 'local',
+      lead: leadRecord
+    };
   }
 
-  // ── Contact Form — CRM Submission ──────────────────────────────
+  // ── Contact Form — Local Lead Store (CRM paused) ───────────────
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     const staticWaWrap = contactForm.querySelector('.wa-input-wrap');

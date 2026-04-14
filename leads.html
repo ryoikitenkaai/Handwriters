@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Leads - HandWriters Publication</title>
+  <meta name="description" content="Temporary local leads dashboard while CRM webhook is paused.">
+  <link rel="icon" type="image/png" href="lo.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .leads-shell {
+      padding: 110px 0 64px;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at top right, rgba(184, 136, 42, 0.08), transparent 45%),
+        radial-gradient(ellipse at bottom left, rgba(18, 36, 58, 0.06), transparent 40%),
+        var(--ivory);
+    }
+
+    .leads-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .leads-header h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .leads-header p {
+      color: var(--text-muted);
+      max-width: 680px;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .leads-panel {
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .leads-toolbar {
+      padding: 16px;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(180deg, rgba(250, 248, 244, 0.85), rgba(250, 248, 244, 0.65));
+    }
+
+    .leads-toolbar-left,
+    .leads-toolbar-right {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .leads-count {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--cream);
+      border: 1px solid var(--border-soft);
+    }
+
+    .leads-search {
+      min-width: 280px;
+      width: min(420px, 92vw);
+    }
+
+    .leads-search input {
+      width: 100%;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      background: var(--white);
+    }
+
+    .leads-search input:focus {
+      outline: none;
+      border-color: rgba(184, 136, 42, 0.45);
+      box-shadow: 0 0 0 3px rgba(184, 136, 42, 0.14);
+    }
+
+    .leads-table-wrap {
+      width: 100%;
+      overflow: auto;
+    }
+
+    .leads-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 980px;
+    }
+
+    .leads-table thead th {
+      position: sticky;
+      top: 0;
+      background: var(--cream);
+      color: var(--ink-mid);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-soft);
+      white-space: nowrap;
+    }
+
+    .leads-table tbody td {
+      padding: 12px 14px;
+      font-size: 0.86rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      vertical-align: top;
+      color: var(--text-body);
+    }
+
+    .leads-table tbody tr:hover {
+      background: rgba(184, 136, 42, 0.05);
+    }
+
+    .lead-message-cell {
+      max-width: 260px;
+      white-space: normal;
+      line-height: 1.5;
+    }
+
+    .empty-state {
+      padding: 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .leads-footer-note {
+      margin-top: 12px;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+
+    .danger-btn {
+      border: 1px solid rgba(224, 82, 82, 0.35);
+      color: #b12f2f;
+      background: rgba(224, 82, 82, 0.08);
+    }
+
+    .danger-btn:hover {
+      background: rgba(224, 82, 82, 0.15);
+      border-color: rgba(224, 82, 82, 0.5);
+      color: #8a1f1f;
+    }
+
+    @media (max-width: 900px) {
+      .leads-shell {
+        padding: 95px 0 42px;
+      }
+
+      .leads-toolbar {
+        padding: 14px;
+      }
+
+      .leads-search {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .leads-toolbar-left,
+      .leads-toolbar-right {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="leads-shell">
+    <div class="container">
+      <div class="leads-header">
+        <div>
+          <span class="section-label">Temporary CRM Replacement</span>
+          <h1>Local Leads Dashboard</h1>
+          <p>New lead submissions are currently being stored in this browser's local storage while the CRM webhook is paused.</p>
+        </div>
+        <div class="leads-toolbar-right">
+          <a href="contact.html" class="btn btn-outline">Open Contact Form</a>
+          <a href="index.html" class="btn btn-outline">Back to Home</a>
+        </div>
+      </div>
+
+      <div class="leads-panel">
+        <div class="leads-toolbar">
+          <div class="leads-toolbar-left">
+            <span id="leadCount" class="leads-count">0 leads</span>
+            <button id="refreshBtn" class="btn btn-outline" type="button">Refresh</button>
+            <button id="exportTxtBtn" class="btn btn-outline" type="button">Export TXT</button>
+            <button id="exportCsvBtn" class="btn btn-outline" type="button">Export CSV</button>
+            <button id="clearBtn" class="btn danger-btn" type="button">Clear All</button>
+          </div>
+          <div class="leads-search">
+            <label for="searchInput" class="sr-only" style="position:absolute;left:-10000px;">Search leads</label>
+            <input id="searchInput" type="search" placeholder="Search by name, email, subject, indexing, source...">
+          </div>
+        </div>
+
+        <div class="leads-table-wrap">
+          <table class="leads-table">
+            <thead>
+              <tr>
+                <th>Submitted</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>WhatsApp</th>
+                <th>Subject</th>
+                <th>Indexing</th>
+                <th>Message</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody id="leadRows"></tbody>
+          </table>
+          <div id="emptyState" class="empty-state" style="display:none;">No local leads found yet. Submit a lead from contact form first.</div>
+        </div>
+      </div>
+
+      <p class="leads-footer-note">Note: this dashboard reads local browser storage only. If you open this page in another browser/device, leads from this browser will not appear there. Local leads older than 90 days are auto-pruned.</p>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var STORAGE_KEY = 'hwp_local_leads_v1';
+      var LEAD_RETENTION_DAYS = 90;
+      var MAX_EXPORT_ROWS = 10000;
+
+      var leadRowsEl = document.getElementById('leadRows');
+      var emptyStateEl = document.getElementById('emptyState');
+      var leadCountEl = document.getElementById('leadCount');
+      var searchInput = document.getElementById('searchInput');
+      var refreshBtn = document.getElementById('refreshBtn');
+      var exportTxtBtn = document.getElementById('exportTxtBtn');
+      var exportCsvBtn = document.getElementById('exportCsvBtn');
+      var clearBtn = document.getElementById('clearBtn');
+
+      function isLeadWithinRetention(lead) {
+        if (!lead || typeof lead !== 'object') return false;
+        if (!lead.submitted_at) return true;
+
+        var submittedMs = Date.parse(lead.submitted_at);
+        if (Number.isNaN(submittedMs)) return true;
+
+        var retentionMs = LEAD_RETENTION_DAYS * 24 * 60 * 60 * 1000;
+        return Date.now() - submittedMs <= retentionMs;
+      }
+
+      function readLeads() {
+        try {
+          var raw = window.localStorage.getItem(STORAGE_KEY);
+          if (!raw) return [];
+          var parsed = JSON.parse(raw);
+          var leads = Array.isArray(parsed) ? parsed.filter(isLeadWithinRetention) : [];
+
+          if (Array.isArray(parsed) && leads.length !== parsed.length) {
+            window.localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+          }
+
+          return leads;
+        } catch (_err) {
+          return [];
+        }
+      }
+
+      function formatDateTime(value) {
+        if (!value) return '-';
+        var d = new Date(value);
+        if (Number.isNaN(d.getTime())) return String(value);
+        return d.toLocaleString();
+      }
+
+      function normalizeText(value) {
+        return String(value || '').trim();
+      }
+
+      function toSearchBlob(lead) {
+        return [
+          lead.name,
+          lead.email,
+          lead.whatsapp,
+          lead.subject,
+          lead.indexing,
+          lead.message,
+          lead.source_form,
+          lead.source_page
+        ].join(' ').toLowerCase();
+      }
+
+      function createCell(row, text, className) {
+        var td = document.createElement('td');
+        td.textContent = text || '-';
+        if (className) td.className = className;
+        row.appendChild(td);
+      }
+
+      function renderRows(leads) {
+        leadRowsEl.innerHTML = '';
+
+        if (!leads.length) {
+          emptyStateEl.style.display = 'block';
+          return;
+        }
+
+        emptyStateEl.style.display = 'none';
+
+        leads.forEach(function (lead) {
+          var row = document.createElement('tr');
+          createCell(row, formatDateTime(lead.submitted_at));
+          createCell(row, normalizeText(lead.name));
+          createCell(row, normalizeText(lead.email));
+          createCell(row, normalizeText(lead.whatsapp));
+          createCell(row, normalizeText(lead.subject));
+          createCell(row, normalizeText(lead.indexing));
+          createCell(row, normalizeText(lead.message), 'lead-message-cell');
+
+          var source = [normalizeText(lead.source_form), normalizeText(lead.source_page)]
+            .filter(Boolean)
+            .join(' | ');
+          createCell(row, source || '-');
+
+          leadRowsEl.appendChild(row);
+        });
+      }
+
+      function render() {
+        var allLeads = readLeads();
+        var query = normalizeText(searchInput.value).toLowerCase();
+        var filtered = allLeads.filter(function (lead) {
+          if (!query) return true;
+          return toSearchBlob(lead).indexOf(query) !== -1;
+        });
+
+        renderRows(filtered);
+
+        var label = filtered.length + ' lead' + (filtered.length === 1 ? '' : 's');
+        if (query) {
+          label = label + ' (filtered from ' + allLeads.length + ')';
+        }
+        leadCountEl.textContent = label;
+      }
+
+      function downloadFile(filename, content, mimeType) {
+        var blob = new Blob([content], { type: mimeType });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      function exportTxt() {
+        var leads = readLeads().slice(0, MAX_EXPORT_ROWS);
+        if (!leads.length) {
+          window.alert('No local leads available to export.');
+          return;
+        }
+
+        var lines = leads.map(function (lead, index) {
+          return [
+            'Lead #' + (index + 1),
+            'Submitted: ' + formatDateTime(lead.submitted_at),
+            'Name: ' + normalizeText(lead.name),
+            'Email: ' + normalizeText(lead.email),
+            'WhatsApp: ' + normalizeText(lead.whatsapp),
+            'Subject: ' + normalizeText(lead.subject),
+            'Indexing: ' + normalizeText(lead.indexing),
+            'Message: ' + normalizeText(lead.message),
+            'Source Form: ' + normalizeText(lead.source_form),
+            'Source Page: ' + normalizeText(lead.source_page)
+          ].join('\n');
+        });
+
+        var content = lines.join('\n\n----------------------------------------\n\n');
+        downloadFile('leads-local-export.txt', content, 'text/plain;charset=utf-8');
+      }
+
+      function csvEscape(value) {
+        var text = String(value || '');
+        if (/^[=+\-@]/.test(text)) {
+          text = "'" + text;
+        }
+        if (text.indexOf('"') !== -1 || text.indexOf(',') !== -1 || text.indexOf('\n') !== -1) {
+          return '"' + text.replace(/"/g, '""') + '"';
+        }
+        return text;
+      }
+
+      function exportCsv() {
+        var leads = readLeads().slice(0, MAX_EXPORT_ROWS);
+        if (!leads.length) {
+          window.alert('No local leads available to export.');
+          return;
+        }
+
+        var header = ['submitted_at', 'name', 'email', 'whatsapp', 'subject', 'indexing', 'message', 'source_form', 'source_page'];
+        var rows = [header.join(',')];
+
+        leads.forEach(function (lead) {
+          rows.push([
+            csvEscape(lead.submitted_at),
+            csvEscape(lead.name),
+            csvEscape(lead.email),
+            csvEscape(lead.whatsapp),
+            csvEscape(lead.subject),
+            csvEscape(lead.indexing),
+            csvEscape(lead.message),
+            csvEscape(lead.source_form),
+            csvEscape(lead.source_page)
+          ].join(','));
+        });
+
+        downloadFile('leads-local-export.csv', rows.join('\n'), 'text/csv;charset=utf-8');
+      }
+
+      function clearAll() {
+        var ok = window.confirm('Delete all locally saved leads from this browser? This cannot be undone.');
+        if (!ok) return;
+
+        window.localStorage.removeItem(STORAGE_KEY);
+        render();
+      }
+
+      searchInput.addEventListener('input', render);
+      refreshBtn.addEventListener('click', render);
+      exportTxtBtn.addEventListener('click', exportTxt);
+      exportCsvBtn.addEventListener('click', exportCsv);
+      clearBtn.addEventListener('click', clearAll);
+
+      render();
+    })();
+  </script>
+</body>
+</html>

@@ -110,7 +110,9 @@
       <div class="contact-form-wrap fade-in fade-in-delay-2">
         <h3>Send Us a Message</h3>
         <p>Fill in the form and we'll get back with a tailored publication plan.</p>
-        <form id="contactForm" action="https://xcrm.handwriterspublication.com/api/webhook/lead" method="POST" novalidate>
+           <!-- CRM action kept for future restore:
+             action="https://xcrm.handwriterspublication.com/api/webhook/lead" -->
+           <form id="contactForm" action="#" method="POST" novalidate data-crm-action="https://xcrm.handwriterspublication.com/api/webhook/lead">
           <div class="form-group"><label for="name">Full Name <span style="color:var(--gold)">*</span></label><input type="text" id="name" name="name" placeholder="Enter your full name" required></div>
           <div class="form-group"><label for="email">Email Address <span style="color:var(--gold)">*</span></label><input type="email" id="email" name="email" placeholder="Enter your email address" required></div>
           <div class="form-group">
@@ -149,7 +151,7 @@
           </div>
           <div class="form-group"><label for="message">Additional Information (max 50 words)</label><textarea id="message" name="message" placeholder="Provide any additional details about your submission (max 50 words)" rows="4"></textarea></div>
           <button type="submit" class="btn btn-gold form-submit-btn"><i class="fas fa-paper-plane"></i> Submit</button>
-          <div class="form-success" id="formSuccess">✓ Thank you for your submission! We will contact you shortly.</div>
+          <div class="form-success" id="formSuccess">✓ Thank you for your submission! We will contact you shortly. You can review saved leads on <a href="leads.html">leads.html</a>.</div>
         </form>
       </div>
     </div>
